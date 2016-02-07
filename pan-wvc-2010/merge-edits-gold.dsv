@@ -1,0 +1,47 @@
+{
+	"Output"	: "merge-edits-gold.csv"
+,	"OutputMetadata": [{
+		"Name"		: "editid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "class"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "oldrevisionid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "newrevisionid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "edittime"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "editor"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "articletitle"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "editcomment"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "deletions"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "additions"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	}]
+}

@@ -1,0 +1,43 @@
+{
+	"Input"		: "edits.csv"
+,	"Skip"		: 1
+,	"MaxRows"	: -1
+,	"InputMetadata"	: [{
+		"Name"		: "editid"
+	,	"Type"		: "integer"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "editor"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "oldrevisionid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "newrevisionid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "diffurl"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "edittime"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "editcomment"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "articleid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "articletitle"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	}]
+}

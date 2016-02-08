@@ -1,0 +1,94 @@
+{
+	"Input"	: "merge-edits-gold.csv"
+,	"DatasetMode": "ROWS"
+,	"InputMetadata": [{
+		"Name"		: "editid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "class"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "oldrevisionid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "newrevisionid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "edittime"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "editor"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "articletitle"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "editcomment"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "deletions"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "additions"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	}]
+
+,	"Output"	: "merge-edits-gold_test.csv"
+,	"OutputMetadata": [{
+		"Name"		: "editid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "class"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "oldrevisionid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "newrevisionid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "edittime"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "editor"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "articletitle"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "editcomment"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "deletions"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "additions"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	}]
+}

@@ -38,7 +38,7 @@ func mergeDatasets() (readset *dsv.Reader, e error) {
 	n, e := dsv.Read(readedits)
 
 	if e != nil && e != io.EOF {
-		goto End
+		goto err
 	}
 
 	fmt.Printf(">>> read %d rows\n", n)
@@ -48,22 +48,22 @@ func mergeDatasets() (readset *dsv.Reader, e error) {
 	readgold, e = dsv.NewReader(fGoldAnnotationsDsv)
 
 	if e != nil {
-		goto End
+		goto err
 	}
 
 	n, e = dsv.Read(readgold)
 
 	if e != nil && e != io.EOF {
-		goto End
+		goto err
 	}
 
 	fmt.Printf(">>> read %d rows\n", n)
 
 	// Merge edits and gold annotation to get the class
 	readedits.MergeColumns(readgold)
-End:
-	readedits.Close()
-	readgold.Close()
+err:
+	_ = readedits.Close()
+	_ = readgold.Close()
 
 	if e == io.EOF {
 		e = nil
@@ -85,7 +85,11 @@ func doDiff(readset *dsv.Reader) {
 		panic(e)
 	}
 
-	diffset.SetDatasetMode(dsv.DatasetModeROWS)
+	e = diffset.SetDatasetMode(dsv.DatasetModeROWS)
+
+	if e != nil {
+		panic(e)
+	}
 
 	md := dsv.NewMetadata("deletions", "string", ",", "\"", "\"", nil)
 	diffset.AddInputMetadata(md)
@@ -153,10 +157,10 @@ func main() {
 
 	if e != nil {
 		fmt.Println("writer.Write: ", e)
-		goto End
+		goto err
 	}
 
 	fmt.Printf(">>> writing %d rows\n", n)
-End:
-	writer.Close()
+err:
+	_ = writer.Close()
 }

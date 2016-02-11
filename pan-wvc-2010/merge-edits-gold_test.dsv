@@ -1,5 +1,5 @@
 {
-	"Input"	: "merge-edits-gold.csv"
+	"Input"	: "merge-edits-gold.dat"
 ,	"DatasetMode": "ROWS"
 ,	"InputMetadata": [{
 		"Name"		: "editid"
@@ -46,7 +46,7 @@
 	,	"RightQuote"	: "\""
 	}]
 
-,	"Output"	: "merge-edits-gold_test.csv"
+,	"Output"	: "merge-edits-gold_test.dat"
 ,	"OutputMetadata": [{
 		"Name"		: "editid"
 	,	"Separator"	: ","

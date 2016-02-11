@@ -131,6 +131,7 @@ func main() {
 		panic(e)
 	}
 
+	fmt.Println(">>> diffing ...")
 	doDiff(readset)
 
 	writer, e := dsv.NewWriter("merge-edits-gold.dsv")
@@ -140,6 +141,7 @@ func main() {
 		panic(e)
 	}
 
+	fmt.Println(">>> writing ...")
 	n, e := writer.Write(readset)
 
 	if e != nil {

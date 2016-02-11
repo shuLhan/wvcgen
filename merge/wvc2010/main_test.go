@@ -11,8 +11,12 @@ import (
 	"testing"
 )
 
+const (
+	fMainTestDsv = "main_test.dsv"
+)
+
 func TestMainOutput(t *testing.T) {
-	rw, e := dsv.New("pan-wvc-2010_merge_edits_gold_test.dsv")
+	rw, e := dsv.New(fMainTestDsv)
 
 	if e != nil {
 		t.Fatal(e)

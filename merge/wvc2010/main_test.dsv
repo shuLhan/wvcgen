@@ -1,5 +1,5 @@
 {
-	"Input"	: "pan-wvc-2010_merge_edits_gold.dat"
+	"Input"	: "merge_edits_gold.dat"
 ,	"DatasetMode": "ROWS"
 ,	"InputMetadata": [{
 		"Name"		: "editid"
@@ -46,7 +46,7 @@
 	,	"RightQuote"	: "\""
 	}]
 
-,	"Output"	: "pan-wvc-2010_merge_edits_gold_test.dat"
+,	"Output"	: "merge_edits_gold_test.dat"
 ,	"OutputMetadata": [{
 		"Name"		: "editid"
 	,	"Separator"	: ","

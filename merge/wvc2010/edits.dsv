@@ -1,5 +1,5 @@
 {
-	"Input"		: "pan-wvc-2010/edits.csv"
+	"Input"		: "../../pan-wvc-2010/edits.csv"
 ,	"Skip"		: 1
 ,	"MaxRows"	: -1
 ,	"InputMetadata"	: [{

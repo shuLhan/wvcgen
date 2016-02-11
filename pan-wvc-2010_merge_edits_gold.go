@@ -22,7 +22,7 @@ func mergeDatasets() (readset *dsv.Reader, e error) {
 
 	// read edits
 	fmt.Println(">>> read edits.csv")
-	readedits, e := dsv.NewReader("edits.dsv")
+	readedits, e := dsv.NewReader("pan-wvc-2010_edits.dsv")
 
 	if e != nil {
 		return
@@ -38,7 +38,7 @@ func mergeDatasets() (readset *dsv.Reader, e error) {
 
 	// read classifications
 	fmt.Println(">>> read gold-annotations.csv")
-	readgold, e = dsv.NewReader("gold-annotations.dsv")
+	readgold, e = dsv.NewReader("pan-wvc-2010_gold-annotations.dsv")
 
 	if e != nil {
 		goto End
@@ -87,8 +87,8 @@ func doDiff(readset *dsv.Reader) {
 	diffset.AddInputMetadata(md)
 
 	for _, row := range readset.GetDataAsRows() {
-		oldrevid := "revisions/" + row[2].String() + ".txt"
-		newrevid := "revisions/" + row[3].String() + ".txt"
+		oldrevid := "pan-wvc-2010/revisions/" + row[2].String() + ".txt"
+		newrevid := "pan-wvc-2010/revisions/" + row[3].String() + ".txt"
 
 		diffs, e := diff.Files(oldrevid, newrevid, diff.LevelWords)
 
@@ -134,7 +134,7 @@ func main() {
 	fmt.Println(">>> diffing ...")
 	doDiff(readset)
 
-	writer, e := dsv.NewWriter("merge-edits-gold.dsv")
+	writer, e := dsv.NewWriter("pan-wvc-2010_merge_edits_gold.dsv")
 
 	if e != nil {
 		fmt.Println("dsv.NewWriter: ", e)

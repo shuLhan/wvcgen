@@ -1,5 +1,5 @@
 {
-	"Input"		: "gold-annotations.csv"
+	"Input"		: "pan-wvc-2010/gold-annotations.csv"
 ,	"Skip"		: 1
 ,	"MaxRows"	: -1
 ,	"InputMetadata"	: [{

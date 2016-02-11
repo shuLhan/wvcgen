@@ -12,7 +12,7 @@ import (
 )
 
 func TestMainOutput(t *testing.T) {
-	rw, e := dsv.New("merge-edits-gold_test.dsv")
+	rw, e := dsv.New("pan-wvc-2010_merge_edits_gold_test.dsv")
 
 	if e != nil {
 		t.Fatal(e)

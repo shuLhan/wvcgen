@@ -5,6 +5,7 @@
 package main
 
 import (
+	"fmt"
 	"github.com/shuLhan/dsv"
 	"github.com/shuLhan/wvcgen/feature"
 	"io"
@@ -36,6 +37,7 @@ func main() {
 		for _, md := range dsvRW.OutputMetadata {
 			ftr := feature.ListFeatureGetByName(md.Name)
 
+			fmt.Println(">>> computing feature", ftr.GetName())
 			ftr.Compute(dsvRW.Dataset)
 
 			ftrValues.PushColumn(ftr.GetValues())

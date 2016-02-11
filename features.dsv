@@ -48,6 +48,9 @@
 
 ,	"Output": "features.dat"
 ,	"OutputMetadata": [{
-		"Name": "anonim"
+		"Name"		: "anonim"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "commentlen"
 	}]
 }

@@ -1,0 +1,53 @@
+{
+	"Input"		: "merge/wvc2010/merge_edits_gold.dat"
+,	"MaxRows"	: -1
+,	"InputMetadata"	: [{
+		"Name"		: "editid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "class"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "oldrevisionid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "newrevisionid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "edittime"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "editor"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "articletitle"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "editcomment"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "deletions"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "additions"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	}]
+
+,	"Output": "features.dat"
+,	"OutputMetadata": [{
+		"Name": "anonim"
+	}]
+}

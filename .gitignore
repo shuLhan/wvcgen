@@ -1,4 +1,7 @@
+*.csv
+*.dat
+*.txt
 *.zip
-pan-wvc-2010/*.csv
-pan-wvc-2010/*.txt
-pan-wvc-2010/revisions/
+pan-wvc-2010
+pan-wvc-2011
+webis-wvc-2007

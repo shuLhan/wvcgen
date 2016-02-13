@@ -48,9 +48,15 @@
 
 ,	"Output": "features.dat"
 ,	"OutputMetadata": [{
+		"Name"		: "editid"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "anonim"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "commentlen"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "class"
 	}]
 }

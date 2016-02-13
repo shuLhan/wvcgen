@@ -34,14 +34,7 @@ func main() {
 			break
 		}
 
-		for _, md := range dsvRW.OutputMetadata {
-			ftr := feature.ListFeatureGetByName(md.Name)
-
-			fmt.Println(">>> computing feature", ftr.GetName())
-			ftr.Compute(dsvRW.Dataset)
-
-			ftrValues.PushColumn(ftr.GetValues())
-		}
+		computeFeatures(dsvRW, &ftrValues)
 
 		if e == io.EOF {
 			break
@@ -59,4 +52,35 @@ func main() {
 	if e != nil {
 		panic(e)
 	}
+}
+
+func computeFeatures(dsvRW *dsv.ReadWriter, ftrValues *dsv.Dataset) {
+	for _, md := range dsvRW.OutputMetadata {
+		ftr := feature.ListFeatureGetByName(md.Name)
+
+		// No feature name found, search the column name in
+		// input metadata.
+		if ftr == nil {
+			getAsInputColumn(dsvRW, md.Name, ftrValues)
+			continue
+		}
+
+		fmt.Println(">>> computing feature", ftr.GetName())
+		ftr.Compute(dsvRW.Dataset)
+
+		ftrValues.PushColumn(ftr.GetValues())
+	}
+}
+
+func getAsInputColumn(dsvRW *dsv.ReadWriter, colName string,
+	ftrValues *dsv.Dataset,
+) {
+	ftr := dsvRW.GetColumnByName(colName)
+
+	if ftr == nil {
+		return
+	}
+
+	// Add column in input as feature
+	ftrValues.PushColumn(*ftr)
 }

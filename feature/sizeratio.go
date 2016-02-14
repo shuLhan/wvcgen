@@ -18,7 +18,7 @@ type SizeRatio struct {
 
 func init() {
 	// Register to list of feature
-	Register(&SizeRatio{}, dsv.TInteger, "sizeratio")
+	Register(&SizeRatio{}, dsv.TReal, "sizeratio")
 }
 
 /*
@@ -50,7 +50,8 @@ func (ftr *SizeRatio) Compute(dataset dsv.Dataset) {
 		oldlen := len(dels.Records[x].String())
 		ratio := float64(1+newlen) / float64(1+oldlen)
 
-		r.SetFloat(ratio)
+		// round it to five digits after comma.
+		r.SetFloat(float64(int(ratio*100000)) / 100000)
 
 		ftr.PushBack(r)
 	}

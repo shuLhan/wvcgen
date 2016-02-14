@@ -66,6 +66,15 @@
 		"Name"		: "sizeratio"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "upperlowerratio"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "uppertoallratio"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "digitratio"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

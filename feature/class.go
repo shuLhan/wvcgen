@@ -17,15 +17,7 @@ type Class struct {
 }
 
 func init() {
-	ftr := Class{
-		Column: dsv.Column{
-			Type: dsv.TInteger,
-			Name: "class",
-		},
-	}
-
-	// Register to list of feature
-	ListFeatureAdd(&ftr)
+	Register(&Class{}, dsv.TInteger, "class")
 }
 
 /*

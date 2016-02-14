@@ -16,15 +16,7 @@ type Anonim struct {
 }
 
 func init() {
-	ftrAnon := Anonim{
-		Column: dsv.Column{
-			Type: dsv.TInteger,
-			Name: "anonim",
-		},
-	}
-
-	// Register to list of feature
-	ListFeatureAdd(&ftrAnon)
+	Register(&Anonim{}, dsv.TInteger, "anonim")
 }
 
 /*

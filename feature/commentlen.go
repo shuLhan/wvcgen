@@ -15,15 +15,7 @@ type CommentLen struct {
 }
 
 func init() {
-	commentLen := CommentLen{
-		Column: dsv.Column{
-			Type: dsv.TInteger,
-			Name: "commentlen",
-		},
-	}
-
-	// Register to list of feature
-	ListFeatureAdd(&commentLen)
+	Register(&CommentLen{}, dsv.TInteger, "commentlen")
 }
 
 /*

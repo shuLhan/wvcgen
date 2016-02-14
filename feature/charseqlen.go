@@ -17,15 +17,7 @@ type CharSeqLen struct {
 }
 
 func init() {
-	ftr := CharSeqLen{
-		Column: dsv.Column{
-			Type: dsv.TInteger,
-			Name: "charseqlen",
-		},
-	}
-
-	// Register to list of feature
-	ListFeatureAdd(&ftr)
+	Register(&CharSeqLen{}, dsv.TInteger, "charseqlen")
 }
 
 /*

@@ -12,8 +12,12 @@ import (
 Interface define methods for feature.
 */
 type Interface interface {
+	SetType(int)
 	GetType() int
+
+	SetName(string)
 	GetName() string
+
 	GetValues() dsv.Column
 	Compute(dsv.Dataset)
 }
@@ -40,4 +44,13 @@ func ListFeatureGetByName(name string) Interface {
 		}
 	}
 	return nil
+}
+
+/*
+Register a feature to the list of global features.
+*/
+func Register(ftr Interface, tipe int, name string) {
+	ftr.SetType(tipe)
+	ftr.SetName(name)
+	ListFeatureAdd(ftr)
 }

@@ -9,8 +9,7 @@ import (
 )
 
 /*
-SizeIncrement return the length of new revision substracted by length of old
-revision.
+SizeIncrement is a feature that compare the size of new with old revision.
 */
 type SizeIncrement struct {
 	dsv.Column
@@ -29,8 +28,8 @@ func (ftr *SizeIncrement) GetValues() dsv.Column {
 }
 
 /*
-Compute return the length of new revision substracted by length of old
-revision.
+Compute the size increment by substracting length of addition with the length
+of deletion.
 */
 func (ftr *SizeIncrement) Compute(dataset dsv.Dataset) {
 	adds := dataset.GetColumnByName("additions")

@@ -9,8 +9,7 @@ import (
 )
 
 /*
-SizeRatio return the length of new revision substracted by length of old
-revision.
+SizeRatio is a feature that compare the size of new with old revision.
 */
 type SizeRatio struct {
 	dsv.Column
@@ -29,8 +28,7 @@ func (ftr *SizeRatio) GetValues() dsv.Column {
 }
 
 /*
-Compute return the length of new revision substracted by length of old
-revision.
+Compute ratio of length of characters in new with old revision.
 */
 func (ftr *SizeRatio) Compute(dataset dsv.Dataset) {
 	adds := dataset.GetColumnByName("additions")

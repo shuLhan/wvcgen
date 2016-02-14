@@ -60,6 +60,12 @@
 		"Name"		: "charseqlen"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "sizeincrement"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "sizeratio"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

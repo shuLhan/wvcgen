@@ -57,6 +57,9 @@
 		"Name"		: "commentlen"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "charseqlen"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

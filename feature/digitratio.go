@@ -37,9 +37,7 @@ func (ftr *DigitRatio) Compute(dataset dsv.Dataset) {
 	for _, rec := range adds.Records {
 		r := &dsv.Record{}
 
-		s := rec.String()
-		n := tekstus.CountDigit(s)
-		ratio := float64(1+n) / float64(1+len(s))
+		ratio := tekstus.RatioDigit(rec.String())
 
 		// round it to five digit after comma.
 		r.SetFloat(float64(int(ratio*100000)) / 100000)

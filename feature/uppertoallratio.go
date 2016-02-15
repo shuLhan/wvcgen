@@ -37,8 +37,7 @@ func (ftr *UpperToAllRatio) Compute(dataset dsv.Dataset) {
 	for _, rec := range adds.Records {
 		r := &dsv.Record{}
 
-		up, lo := tekstus.CountUpperLowerChar(rec.String())
-		ratio := float64(1+up) / float64(1+up+lo)
+		ratio := tekstus.RatioUpper(rec.String())
 
 		// round it to five digit after comma.
 		r.SetFloat(float64(int(ratio*100000)) / 100000)

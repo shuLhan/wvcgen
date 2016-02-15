@@ -75,6 +75,12 @@
 		"Name"		: "digitratio"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "nonalnumratio"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "chardiversity"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

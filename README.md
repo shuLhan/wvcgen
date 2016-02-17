@@ -66,3 +66,32 @@ file `features.dsv`,
 * `Output` key point the file where result of features computation will be
   written,
 * `OutputMetadata` contain list of features that will computed.
+
+## List of Features
+
+### Metadata
+
+* "anonim": give a value '1' if an editor is anonymous or '0' otherwise.
+* "commentlen": length of character in the comment supplied with an edit.
+* "sizeincrement": compute the size different between inserted text minus
+  deletion.
+* "sizeratio": length of inserted text / length of text deletion.
+
+## Text
+
+* "charseqlen": length of the longest sequence of the same character in
+  inserted text.
+* "upperlowerratio": ratio of uppercase to lowercase in inserted text.
+* "uppertoallratio": ratio of uppercase to all character in inserted text.
+* "digitratio": ratio of digit to all character in inserted text.
+* "nonalnumratio": ratio of non alpha-numeric to all character in inserted
+  text.
+* "chardiversity": length of inserted text power of (1 / number of unique
+  character).
+* "chardistributioninsert": the distribution of character using
+  Kullback-Leibler divergence algorithm.
+
+## Misc
+
+* "class": convert the classification from text to numeric. The "regular" class
+will become 0 and the "vandalism" will become 1.

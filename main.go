@@ -8,6 +8,8 @@ import (
 	"fmt"
 	"github.com/shuLhan/dsv"
 	"github.com/shuLhan/wvcgen/feature"
+	"github.com/shuLhan/wvcgen/reader"
+	"github.com/shuLhan/wvcgen/revision"
 	"io"
 )
 
@@ -15,67 +17,88 @@ const (
 	fInputDsv = "features.dsv"
 )
 
+/*
+Init set configuration of generator.
+*/
+func Init(reader *reader.Reader) {
+	revision.SetDir(reader.RevisionDir)
+}
+
 func main() {
 	ftrValues := dsv.Dataset{}
 
 	ftrValues.Init(dsv.DatasetModeColumns, nil, nil)
 
-	dsvRW, e := dsv.New(fInputDsv)
+	reader, e := reader.NewReader(fInputDsv)
 
 	if e != nil {
 		panic(e)
 		return
 	}
 
+	writer, e := dsv.NewWriter(fInputDsv)
+
+	if e != nil {
+		panic(e)
+		return
+	}
+
+	Init(reader)
+
 	for {
-		n, e := dsv.Read(&dsvRW.Reader)
+		n, e := dsv.Read(reader)
 
 		if n <= 0 {
 			break
 		}
 
-		computeFeatures(dsvRW, &ftrValues)
+		computeFeatures(reader, writer, &ftrValues)
 
 		if e == io.EOF {
 			break
 		}
 	}
 
-	_, e = dsvRW.WriteColumns(&ftrValues.Columns, nil)
+	e = reader.Close()
+	if e != nil {
+		panic(e)
+	}
+
+	_, e = writer.WriteColumns(&ftrValues.Columns, nil)
 
 	if e != nil {
 		panic(e)
 	}
 
-	e = dsvRW.Close()
+	e = writer.Close()
 
 	if e != nil {
 		panic(e)
 	}
 }
 
-func computeFeatures(dsvRW *dsv.ReadWriter, ftrValues *dsv.Dataset) {
-	for _, md := range dsvRW.OutputMetadata {
+func computeFeatures(reader *reader.Reader, writer *dsv.Writer, ftrValues *dsv.Dataset) {
+	for _, md := range writer.OutputMetadata {
 		ftr := feature.ListFeatureGetByName(md.Name)
 
 		// No feature name found, search the column name in
 		// input metadata.
 		if ftr == nil {
-			getAsInputColumn(dsvRW, md.Name, ftrValues)
+			getAsInputColumn(reader, md.Name, ftrValues)
 			continue
 		}
 
 		fmt.Println(">>> computing feature", ftr.GetName())
-		ftr.Compute(dsvRW.Dataset)
+		ftr.Compute(reader.Dataset)
 
 		ftrValues.PushColumn(ftr.GetValues())
 	}
 }
 
-func getAsInputColumn(dsvRW *dsv.ReadWriter, colName string,
+func getAsInputColumn(reader *reader.Reader, colName string,
 	ftrValues *dsv.Dataset,
 ) {
-	ftr := dsvRW.GetColumnByName(colName)
+	ftr := reader.GetColumnByName(colName)
 
 	if ftr == nil {
 		return

@@ -46,7 +46,8 @@
 	,	"RightQuote"	: "\""
 	}]
 
-,	"Output": "features.dat"
+,	"RevisionDir"	: "pan-wvc-2010/revisions"
+,	"Output"	: "features.dat"
 ,	"OutputMetadata": [{
 		"Name"		: "editid"
 	,	"Separator"	: ","
@@ -79,6 +80,9 @@
 	,	"Separator"	: ","
 	},{
 		"Name"		: "chardiversity"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "chardistributioninsert"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "class"

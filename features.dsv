@@ -85,6 +85,9 @@
 		"Name"		: "chardistributioninsert"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "compressrate"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

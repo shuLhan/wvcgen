@@ -88,6 +88,9 @@
 		"Name"		: "compressrate"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "goodtoken"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

@@ -90,6 +90,10 @@ file `features.dsv`,
   character).
 * "chardistributioninsert": the distribution of character using
   Kullback-Leibler divergence algorithm.
+* "compressrate": compute the compression rate of inserted text using LZW.
+* "goodtoken": compute number of good or known Wikipedia token in inserted
+text.
+* "term_frequency": compute frequency of inserted word in new revision.
 
 ## Misc
 

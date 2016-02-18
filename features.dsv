@@ -58,7 +58,7 @@
 		"Name"		: "commentlen"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "charseqlen"
+		"Name"		: "longset_char_sequence"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "sizeincrement"
@@ -94,7 +94,9 @@
 		"Name"		: "term_frequency"
 	,	"Separator"	: ","
 	},{
-
+		"Name"		: "longest_word"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

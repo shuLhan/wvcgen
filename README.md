@@ -79,8 +79,6 @@ file `features.dsv`,
 
 ## Text
 
-* "charseqlen": length of the longest sequence of the same character in
-  inserted text.
 * "upperlowerratio": ratio of uppercase to lowercase in inserted text.
 * "uppertoallratio": ratio of uppercase to all character in inserted text.
 * "digitratio": ratio of digit to all character in inserted text.
@@ -94,6 +92,9 @@ file `features.dsv`,
 * "goodtoken": compute number of good or known Wikipedia token in inserted
 text.
 * "term_frequency": compute frequency of inserted word in new revision.
+* "longest_word": the length of longest word in inserted text.
+* "longest_char_seq": length of the longest sequence of the same character in
+  inserted text.
 
 ## Misc
 

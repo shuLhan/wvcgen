@@ -10,27 +10,27 @@ import (
 )
 
 /*
-CharSeqLen will compute maximum sequence of character at inserted text.
+LongestCharSeq will compute maximum sequence of character at inserted text.
 */
-type CharSeqLen struct {
+type LongestCharSeq struct {
 	dsv.Column
 }
 
 func init() {
-	Register(&CharSeqLen{}, dsv.TInteger, "charseqlen")
+	Register(&LongestCharSeq{}, dsv.TInteger, "longset_char_sequence")
 }
 
 /*
 GetValues return feature values.
 */
-func (ftr *CharSeqLen) GetValues() dsv.Column {
+func (ftr *LongestCharSeq) GetValues() dsv.Column {
 	return ftr.Column
 }
 
 /*
 Compute maximum sequence of character at inserted text.
 */
-func (ftr *CharSeqLen) Compute(dataset dsv.Dataset) {
+func (ftr *LongestCharSeq) Compute(dataset dsv.Dataset) {
 	nospace := true
 	col := dataset.GetColumnByName("additions")
 

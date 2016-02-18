@@ -91,6 +91,10 @@
 		"Name"		: "goodtoken"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "term_frequency"
+	,	"Separator"	: ","
+	},{
+
 		"Name"		: "class"
 	}]
 }

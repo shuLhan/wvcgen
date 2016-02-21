@@ -101,6 +101,9 @@
 		"Name"		: "vulgar_frequency"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "pronoun_frequency"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

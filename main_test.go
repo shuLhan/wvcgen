@@ -145,3 +145,7 @@ func TestBiasFrequency(t *testing.T) {
 func TestSexWordsFrequency(t *testing.T) {
 	callMain(t, "sex_words_frequency")
 }
+
+func TestBadWordsFrequency(t *testing.T) {
+	callMain(t, "bad_words_frequency")
+}

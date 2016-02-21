@@ -110,6 +110,9 @@
 		"Name"		: "sex_words_frequency"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "bad_words_frequency"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

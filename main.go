@@ -26,16 +26,17 @@ func initReader(reader *wvcreader.Reader) {
 }
 
 /*
-initReadWriter initialize reader and writer.
+InitReadWriter initialize reader and writer.
 */
-func initReadWriter() (reader *wvcreader.Reader, writer *dsv.Writer) {
-	reader, e := wvcreader.NewReader(fInputDsv)
+func InitReadWriter(finput string) (reader *wvcreader.Reader,
+	writer *dsv.Writer) {
+	reader, e := wvcreader.NewReader(finput)
 
 	if e != nil {
 		panic(e)
 	}
 
-	writer, e = dsv.NewWriter(fInputDsv)
+	writer, e = dsv.NewWriter(finput)
 
 	if e != nil {
 		panic(e)
@@ -57,6 +58,8 @@ func computeFeatures(reader *wvcreader.Reader, writer *dsv.Writer) (
 	ftrValues.Init(dsv.DatasetModeColumns, nil, nil)
 
 	for _, md := range writer.OutputMetadata {
+		fmt.Println(">>> computing feature", md.Name)
+
 		ftr := feature.ListFeatureGetByName(md.Name)
 
 		// No feature name found, search the column name in
@@ -66,7 +69,6 @@ func computeFeatures(reader *wvcreader.Reader, writer *dsv.Writer) (
 			continue
 		}
 
-		fmt.Println(">>> computing feature", ftr.GetName())
 		ftr.Compute(reader.Dataset)
 
 		ftrValues.PushColumn(ftr.GetValues())
@@ -91,12 +93,20 @@ func getAsInputColumn(reader *wvcreader.Reader, colName string,
 	ftrValues.PushColumn(*ftr)
 }
 
-func main() {
+func Generate(featureName, finput string) {
 	var ftrValues *dsv.Dataset
 	var e error
 	var n int
 
-	reader, writer := initReadWriter()
+	reader, writer := InitReadWriter(finput)
+
+	if featureName != "" {
+		ftrMd := dsv.Metadata{
+			Name: featureName,
+		}
+
+		writer.AddMetadata(ftrMd)
+	}
 
 	for {
 		n, e = dsv.Read(reader)
@@ -106,6 +116,12 @@ func main() {
 		}
 
 		ftrValues = computeFeatures(reader, writer)
+
+		_, ewrite := writer.WriteColumns(&ftrValues.Columns, nil)
+
+		if ewrite != nil {
+			panic(e)
+		}
 
 		if e == io.EOF {
 			break
@@ -117,15 +133,13 @@ func main() {
 		panic(e)
 	}
 
-	_, e = writer.WriteColumns(&ftrValues.Columns, nil)
-
-	if e != nil {
-		panic(e)
-	}
-
 	e = writer.Close()
 
 	if e != nil {
 		panic(e)
 	}
+}
+
+func main() {
+	Generate("", fInputDsv)
 }

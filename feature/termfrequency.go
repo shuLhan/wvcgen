@@ -59,7 +59,7 @@ func (ftr *TermFrequency) Compute(dataset dsv.Dataset) {
 		newWords := tekstus.StringSplitWords(newText, true, false)
 		inWords := tekstus.StringSplitWords(inText, true, true)
 
-		freq := tekstus.ListStringFrequency(newWords, inWords, false)
+		freq := tekstus.WordsFrequenciesOf(newWords, inWords, false)
 
 		// round it to five digit after comma.
 		r.SetFloat(float64(int(freq*100000)) / 100000)

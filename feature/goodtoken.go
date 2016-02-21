@@ -71,7 +71,7 @@ func (anon *GoodToken) Compute(dataset dsv.Dataset) {
 
 		s := rec.String()
 
-		cnt := tekstus.StringCountTokens(s, tokens)
+		cnt := tekstus.StringCountTokens(s, tokens, false)
 
 		r.SetInteger(int64(cnt))
 

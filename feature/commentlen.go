@@ -35,7 +35,7 @@ func (ftr *CommentLen) Compute(dataset dsv.Dataset) {
 	for _, rec := range col.Records {
 		cmt := rec.ToByte()
 
-		cmt, _ = tekstus.EncapsulateTrim(cmt, leftcap, rightcap)
+		cmt, _ = tekstus.BytesRemoveUntil(cmt, leftcap, rightcap)
 
 		r := &dsv.Record{
 			V: int64(len(cmt)),

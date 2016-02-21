@@ -40,7 +40,7 @@ func (ftr *LongestWord) Compute(dataset dsv.Dataset) {
 
 		s = clean.WikiText(s)
 		inWords := tekstus.StringSplitWords(s, true, true)
-		slong, _ := tekstus.StringsFindLongest(inWords)
+		slong, _ := tekstus.WordsFindLongest(inWords)
 		fmt.Printf(">>> %d/%d longest word: %q\n", x, addslen, slong)
 
 		r.SetInteger(int64(len(slong)))

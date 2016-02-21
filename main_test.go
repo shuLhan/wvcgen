@@ -141,3 +141,7 @@ func callMain(t *testing.T, featureName string) {
 func TestBiasFrequency(t *testing.T) {
 	callMain(t, "bias_frequency")
 }
+
+func TestSexWordsFrequency(t *testing.T) {
+	callMain(t, "sex_words_frequency")
+}

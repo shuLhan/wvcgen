@@ -2,7 +2,7 @@
 // Use of this source code is governed by a BSD-style
 // license that can be found in the LICENSE file.
 
-package main
+package main_test
 
 import (
 	"fmt"
@@ -11,10 +11,11 @@ import (
 	wvcreader "github.com/shuLhan/wvcgen/reader"
 	"github.com/shuLhan/wvcgen/revision"
 	"io"
+	"testing"
 )
 
 const (
-	fInputDsv = "features.dsv"
+	fInputDsv = "features_test.dsv"
 )
 
 /*
@@ -28,7 +29,8 @@ func initReader(reader *wvcreader.Reader) {
 /*
 initReadWriter initialize reader and writer.
 */
-func initReadWriter() (reader *wvcreader.Reader, writer *dsv.Writer) {
+func initReadWriter() (reader *wvcreader.Reader,
+	writer *dsv.Writer) {
 	reader, e := wvcreader.NewReader(fInputDsv)
 
 	if e != nil {
@@ -91,12 +93,18 @@ func getAsInputColumn(reader *wvcreader.Reader, colName string,
 	ftrValues.PushColumn(*ftr)
 }
 
-func main() {
+func callMain(t *testing.T, featureName string) {
 	var ftrValues *dsv.Dataset
 	var e error
 	var n int
 
 	reader, writer := initReadWriter()
+
+	ftrMd := dsv.Metadata{
+		Name: featureName,
+	}
+
+	writer.AddMetadata(ftrMd)
 
 	for {
 		n, e = dsv.Read(reader)
@@ -114,18 +122,22 @@ func main() {
 
 	e = reader.Close()
 	if e != nil {
-		panic(e)
+		t.Fatal(e)
 	}
 
 	_, e = writer.WriteColumns(&ftrValues.Columns, nil)
 
 	if e != nil {
-		panic(e)
+		t.Fatal(e)
 	}
 
 	e = writer.Close()
 
 	if e != nil {
-		panic(e)
+		t.Fatal(e)
 	}
+}
+
+func TestBiasFrequency(t *testing.T) {
+	callMain(t, "bias_frequency")
 }

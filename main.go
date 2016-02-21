@@ -22,6 +22,7 @@ Init set configuration of generator.
 */
 func Init(reader *reader.Reader) {
 	revision.SetDir(reader.RevisionDir)
+	revision.SetCleanDir(reader.RevisionCleanDir)
 }
 
 func main() {

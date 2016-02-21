@@ -16,6 +16,9 @@ import (
 var (
 	// Dir define where the revision directory located.
 	Dir = ""
+	// CleanDir define directory where revision that has been cleaned
+	// up located.
+	CleanDir = ""
 )
 
 /*
@@ -23,6 +26,13 @@ SetDir will set revision directory to `path`.
 */
 func SetDir(path string) {
 	Dir = path
+}
+
+/*
+SetCleanDir set directory where revision that has been cleaned up located.
+*/
+func SetCleanDir(path string) {
+	CleanDir = path
 }
 
 /*
@@ -34,6 +44,21 @@ func GetContent(id string) (string, error) {
 	}
 
 	path := Dir + "/" + id + ".txt"
+
+	b, e := ioutil.ReadFile(path)
+
+	return string(b), e
+}
+
+/*
+GetContentClean return content of revision that has been cleaning up.
+*/
+func GetContentClean(id string) (string, error) {
+	if CleanDir == "" {
+		return "", errors.New("Clean revision directory is not set!")
+	}
+
+	path := CleanDir + "/" + id + ".txt"
 
 	b, e := ioutil.ReadFile(path)
 

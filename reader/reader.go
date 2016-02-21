@@ -20,6 +20,9 @@ type Reader struct {
 	dsv.Reader
 	// RevisionDir define directory where Wikipedia revision exist.
 	RevisionDir string `json:RevisionDir`
+	// RevisionCleanDir define directory where Wikipedia revision that
+	// has been cleaned up located.
+	RevisionCleanDir string `json:RevisionCleanDir`
 }
 
 /*

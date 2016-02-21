@@ -50,10 +50,26 @@ revision with new revision at words level.
 One can customize the output of dataset by editing the `merge_edits_gold.dsv`
 configuration and run the merge script again.
 
-## Generating Features
+#### Cleaning Wiki Revisions
 
-After one of PAN WVC dataset has been merged, one can compute the vandalism
-features by runnning `main.go` script in root of repository.
+* Go to directory `cmd/wikiclean`
+* Create directory where the output of cleaning will be located,
+  ```
+  $ mkdir -p ../../pan-wvc-2010/revisions_clean
+  ```
+* Run `main.go` script to clean revisions file
+  ```
+  $ go run main.go ../../pan-wvc-2010/revisions ../../pan-wvc-2010/revisions_clean
+  ```
+
+  The first parameter is the input location where the revision text to be
+  cleaning up located, the second parameter is location where new revision
+  that has been cleaned up will be written.
+
+#### Generating Features
+
+After one of PAN WVC dataset has been merged and cleaned up one can compute the
+vandalism features by runnning `main.go` script in root of repository.
 
     $ go run main.go
 
@@ -77,7 +93,7 @@ file `features.dsv`,
   deletion.
 * "sizeratio": length of inserted text / length of text deletion.
 
-## Text
+### Text
 
 * "upperlowerratio": ratio of uppercase to lowercase in inserted text.
 * "uppertoallratio": ratio of uppercase to all character in inserted text.
@@ -96,7 +112,7 @@ text.
 * "longest_char_seq": length of the longest sequence of the same character in
   inserted text.
 
-## Misc
+### Misc
 
 * "class": convert the classification from text to numeric. The "regular" class
 will become 0 and the "vandalism" will become 1.

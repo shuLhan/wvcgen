@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"github.com/shuLhan/dsv"
 	"github.com/shuLhan/tekstus"
+	"github.com/shuLhan/wvcgen/clean"
 )
 
 // LongestWord find and return the longset word in inserted text.
@@ -37,6 +38,7 @@ func (ftr *LongestWord) Compute(dataset dsv.Dataset) {
 		r := &dsv.Record{}
 		s := rec.String()
 
+		s = clean.WikiText(s)
 		inWords := tekstus.StringSplitWords(s, true, true)
 		slong, _ := tekstus.StringsFindLongest(inWords)
 		fmt.Printf(">>> %d/%d longest word: %q\n", x, addslen, slong)

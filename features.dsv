@@ -104,6 +104,9 @@
 		"Name"		: "pronoun_frequency"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "bias_frequency"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

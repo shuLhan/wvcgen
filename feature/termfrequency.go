@@ -8,6 +8,7 @@ import (
 	"fmt"
 	"github.com/shuLhan/dsv"
 	"github.com/shuLhan/tekstus"
+	"github.com/shuLhan/wvcgen/clean"
 	"github.com/shuLhan/wvcgen/revision"
 )
 
@@ -34,18 +35,21 @@ Compute the frequency of inserted words.
 func (ftr *TermFrequency) Compute(dataset dsv.Dataset) {
 	newrevidx := dataset.GetColumnByName("newrevisionid")
 	adds := dataset.GetColumnByName("additions")
+	recordslen := len(adds.Records)
 
 	for x, rec := range adds.Records {
 		r := &dsv.Record{}
 
 		// Get inserted text.
 		inText := rec.String()
+		inText = clean.WikiText(inText)
 
 		// Get content of new revision
 		revid := newrevidx.Records[x].String()
-		fmt.Printf(">>> %d processing new revision id %q\n", x, revid)
+		fmt.Printf(">>> term_frequency: %d/%d processing new revision id %q\n", x,
+			recordslen, revid)
 
-		newText, e := revision.GetContent(revid)
+		newText, e := revision.GetContentClean(revid)
 		if e != nil {
 			r.SetFloat(0)
 			ftr.PushBack(r)

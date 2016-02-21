@@ -98,6 +98,9 @@
 		"Name"		: "longest_word"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "vulgar_frequency"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

@@ -18,7 +18,7 @@ type VulgarFrequency struct {
 }
 
 func init() {
-	Register(&VulgarFrequency{}, dsv.TInteger, "vulgar_frequency")
+	Register(&VulgarFrequency{}, dsv.TReal, "vulgar_frequency")
 }
 
 /*

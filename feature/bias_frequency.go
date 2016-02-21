@@ -19,7 +19,7 @@ type BiasFrequency struct {
 }
 
 func init() {
-	Register(&BiasFrequency{}, dsv.TInteger, "bias_frequency")
+	Register(&BiasFrequency{}, dsv.TReal, "bias_frequency")
 }
 
 /*

@@ -18,7 +18,7 @@ type SexWordsFrequency struct {
 }
 
 func init() {
-	Register(&SexWordsFrequency{}, dsv.TInteger, "sex_words_frequency")
+	Register(&SexWordsFrequency{}, dsv.TReal, "sex_words_frequency")
 }
 
 /*
@@ -36,6 +36,12 @@ func (ftr *SexWordsFrequency) Compute(dataset dsv.Dataset) {
 
 	for _, rec := range col.Records {
 		in := clean.WikiText(rec.String())
+
+		if len(in) == 0 {
+			ftr.PushBack(&dsv.Record{V: float64(0)})
+			continue
+		}
+
 		inWords := tekstus.StringSplitWords(in, true, false)
 
 		freq := tekstus.WordsFrequenciesOf(inWords,

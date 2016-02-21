@@ -19,7 +19,7 @@ type BadWordsFrequency struct {
 }
 
 func init() {
-	Register(&BadWordsFrequency{}, dsv.TInteger, "bad_words_frequency")
+	Register(&BadWordsFrequency{}, dsv.TReal, "bad_words_frequency")
 }
 
 /*

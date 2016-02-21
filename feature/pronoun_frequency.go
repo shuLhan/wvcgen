@@ -19,7 +19,7 @@ type PronounFrequency struct {
 }
 
 func init() {
-	Register(&PronounFrequency{}, dsv.TInteger, "pronoun_frequency")
+	Register(&PronounFrequency{}, dsv.TReal, "pronoun_frequency")
 }
 
 /*

@@ -17,6 +17,7 @@ import (
 
 func WikiText(text string) string {
 	text = tekstus.StringRemoveURI(text)
+	text = tekstus.StringRemoveWikiMarkup(text)
 	text = strings.Replace(text, "\r\n", "\n", -1)
 	text = strings.Replace(text, "[", " ", -1)
 	text = strings.Replace(text, "]", " ", -1)
@@ -32,6 +33,9 @@ func WikiText(text string) string {
 	text = strings.Replace(text, "<br />", " ", -1)
 	text = strings.Replace(text, "<br/>", " ", -1)
 	text = strings.Replace(text, "<br>", " ", -1)
+	text = strings.Replace(text, "<nowiki>", " ", -1)
+	text = strings.Replace(text, "</nowiki>", " ", -1)
+	text = strings.Replace(text, "&nbsp;", " ", -1)
 	text = strings.TrimSpace(text)
 	text = tekstus.StringMergeSpaces(text, true)
 

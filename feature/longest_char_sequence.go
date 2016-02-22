@@ -17,7 +17,7 @@ type LongestCharSeq struct {
 }
 
 func init() {
-	Register(&LongestCharSeq{}, dsv.TInteger, "longset_char_sequence")
+	Register(&LongestCharSeq{}, dsv.TInteger, "longest_char_sequence")
 }
 
 /*
@@ -31,18 +31,13 @@ func (ftr *LongestCharSeq) GetValues() dsv.Column {
 Compute maximum sequence of character at inserted text.
 */
 func (ftr *LongestCharSeq) Compute(dataset dsv.Dataset) {
-	nospace := true
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
-		r := &dsv.Record{
-			V: int64(0),
-		}
+		text := rec.String()
 
-		_, c := tekstus.GetMaxCharSequence(rec.String(), nospace)
+		_, v := tekstus.GetMaxCharSequence(text)
 
-		r.SetInteger(int64(c))
-
-		ftr.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: int64(v)})
 	}
 }

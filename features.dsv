@@ -96,7 +96,7 @@
 		"Name"		: "longest_word"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "longset_char_sequence"
+		"Name"		: "longest_char_sequence"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "vulgar_frequency"

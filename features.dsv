@@ -69,7 +69,7 @@
 		"Name"		: "upper_lower_ratio"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "uppertoallratio"
+		"Name"		: "upper_to_all_ratio"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "digitratio"

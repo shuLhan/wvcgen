@@ -16,9 +16,9 @@ type UpperToAllRatio struct {
 	dsv.Column
 }
 
+// init Register to list of feature
 func init() {
-	// Register to list of feature
-	Register(&UpperToAllRatio{}, dsv.TReal, "uppertoallratio")
+	Register(&UpperToAllRatio{}, dsv.TReal, "upper_to_all_ratio")
 }
 
 /*
@@ -35,13 +35,8 @@ func (ftr *UpperToAllRatio) Compute(dataset dsv.Dataset) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {
-		r := &dsv.Record{}
-
 		ratio := tekstus.RatioUpper(rec.String())
 
-		// round it to five digit after comma.
-		r.SetFloat(float64(int(ratio*100000)) / 100000)
-
-		ftr.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: Round(ratio)})
 	}
 }

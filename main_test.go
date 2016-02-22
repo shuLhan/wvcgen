@@ -33,6 +33,10 @@ func TestUpperLowerRatio(t *testing.T) {
 	main.Generate("upper_lower_ratio", fInputDsv)
 }
 
+func TestUpperToAllRatio(t *testing.T) {
+	main.Generate("upper_to_all_ratio", fInputDsv)
+}
+
 func TestBiasFrequency(t *testing.T) {
 	main.Generate("bias_frequency", fInputDsv)
 }

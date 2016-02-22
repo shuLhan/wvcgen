@@ -77,6 +77,10 @@ func TestVulgarFrequency(t *testing.T) {
 	main.Generate("vulgar_frequency", fInputDsv)
 }
 
+func TestPronounFrequency(t *testing.T) {
+	main.Generate("pronoun_frequency", fInputDsv)
+}
+
 func TestBiasFrequency(t *testing.T) {
 	main.Generate("bias_frequency", fInputDsv)
 }

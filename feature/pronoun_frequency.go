@@ -36,14 +36,17 @@ func (ftr *PronounFrequency) Compute(dataset dsv.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
-		in := clean.WikiText(rec.String())
-		inWords := tekstus.StringSplitWords(in, true, false)
+		text := rec.String()
+		if len(text) == 0 {
+			ftr.PushBack(&dsv.Record{V: float64(0)})
+			continue
+		}
 
-		freq := tekstus.WordsFrequenciesOf(inWords,
-			tekstus.PronounWords, false)
+		in := clean.WikiText(text)
 
-		freq = float64(int(freq*100000)) / 100000
+		freq := tekstus.StringFrequenciesOf(in, tekstus.PronounWords,
+			false)
 
-		ftr.PushBack(&dsv.Record{V: freq})
+		ftr.PushBack(&dsv.Record{V: Round(freq)})
 	}
 }

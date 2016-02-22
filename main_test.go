@@ -17,6 +17,10 @@ func TestAnonim(t *testing.T) {
 	main.Generate("anonim", fInputDsv)
 }
 
+func TestCommentLength(t *testing.T) {
+	main.Generate("comment_length", fInputDsv)
+}
+
 func TestSizeIncrement(t *testing.T) {
 	main.Generate("size_increment", fInputDsv)
 }

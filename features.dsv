@@ -57,7 +57,7 @@
 		"Name"		: "anonim"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "commentlen"
+		"Name"		: "comment_length"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "size_increment"

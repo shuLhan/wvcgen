@@ -9,25 +9,25 @@ import (
 	"github.com/shuLhan/tekstus"
 )
 
-// CommentLen feature for compute the length of edit comment.
-type CommentLen struct {
+// CommentLength feature for compute the length of edit comment.
+type CommentLength struct {
 	dsv.Column
 }
 
 func init() {
-	Register(&CommentLen{}, dsv.TInteger, "commentlen")
+	Register(&CommentLength{}, dsv.TInteger, "comment_length")
 }
 
 /*
 GetValues return feature values.
 */
-func (ftr *CommentLen) GetValues() dsv.Column {
+func (ftr *CommentLength) GetValues() dsv.Column {
 	return ftr.Column
 }
 
 // Compute will count number of bytes that is used in comment, NOT including
 // the header content "/* ... */".
-func (ftr *CommentLen) Compute(dataset dsv.Dataset) {
+func (ftr *CommentLength) Compute(dataset dsv.Dataset) {
 	col := dataset.GetColumnByName("editcomment")
 	leftcap := []byte("/*")
 	rightcap := []byte("*/")
@@ -37,10 +37,6 @@ func (ftr *CommentLen) Compute(dataset dsv.Dataset) {
 
 		cmt, _ = tekstus.BytesRemoveUntil(cmt, leftcap, rightcap)
 
-		r := &dsv.Record{
-			V: int64(len(cmt)),
-		}
-
-		ftr.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: int64(len(cmt))})
 	}
 }

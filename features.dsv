@@ -66,7 +66,7 @@
 		"Name"		: "size_ratio"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "upperlowerratio"
+		"Name"		: "upper_lower_ratio"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "uppertoallratio"

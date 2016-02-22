@@ -18,7 +18,7 @@ type UpperLowerRatio struct {
 
 func init() {
 	// Register to list of feature
-	Register(&UpperLowerRatio{}, dsv.TReal, "upperlowerratio")
+	Register(&UpperLowerRatio{}, dsv.TReal, "upper_lower_ratio")
 }
 
 /*
@@ -35,13 +35,8 @@ func (ftr *UpperLowerRatio) Compute(dataset dsv.Dataset) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {
-		r := &dsv.Record{}
-
 		ratio := tekstus.RatioUpperLowerChar(rec.String())
 
-		// round it to five digit after comma.
-		r.SetFloat(float64(int(ratio*100000)) / 100000)
-
-		ftr.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: Round(ratio)})
 	}
 }

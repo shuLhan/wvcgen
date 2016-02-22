@@ -10,7 +10,7 @@ import (
 )
 
 /*
-CharDistributionInsert is a feature that measure divergence of the character
+CharDistributionInsert measure divergence of the character
 distribution of the inserted text with respect to the expectation.
 */
 type CharDistributionInsert struct {
@@ -20,7 +20,7 @@ type CharDistributionInsert struct {
 // init Register to list of feature
 func init() {
 	Register(&CharDistributionInsert{}, dsv.TReal,
-		"chardistributioninsert")
+		"char_distribution_insert")
 }
 
 /*
@@ -38,11 +38,11 @@ func (ftr *CharDistributionInsert) Compute(dataset dsv.Dataset) {
 	adds := dataset.GetColumnByName("additions")
 
 	for x, rold := range oldrevid.Records {
-		r := &dsv.Record{}
-
 		// count distribution of old revision
 		oldText, e := revision.GetContent(rold.String())
+
 		if e != nil {
+			ftr.PushBack(&dsv.Record{V: 0.0})
 			continue
 		}
 
@@ -51,9 +51,6 @@ func (ftr *CharDistributionInsert) Compute(dataset dsv.Dataset) {
 
 		divergence := KullbackLeiblerDivergence(oldText, inText)
 
-		// round it to five digit after comma.
-		r.SetFloat(float64(int(divergence*100000)) / 100000)
-
-		ftr.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: Round(divergence)})
 	}
 }

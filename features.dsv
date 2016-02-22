@@ -81,7 +81,7 @@
 		"Name"		: "char_diversity"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "chardistributioninsert"
+		"Name"		: "char_distribution_insert"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "compressrate"

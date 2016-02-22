@@ -49,6 +49,10 @@ func TestCharDiversity(t *testing.T) {
 	main.Generate("char_diversity", fInputDsv)
 }
 
+func TestCharDistributionInsert(t *testing.T) {
+	main.Generate("char_distribution_insert", fInputDsv)
+}
+
 func TestBiasFrequency(t *testing.T) {
 	main.Generate("bias_frequency", fInputDsv)
 }

@@ -11,7 +11,7 @@ import (
 )
 
 /*
-BiasFrequency will count frequency of colloquial words with high bias.
+BiasFrequency will count frequency of colloquial words with high bias in
 inserted text.
 */
 type BiasFrequency struct {
@@ -36,14 +36,17 @@ func (ftr *BiasFrequency) Compute(dataset dsv.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
-		in := clean.WikiText(rec.String())
-		inWords := tekstus.StringSplitWords(in, true, false)
+		text := rec.String()
+		if len(text) == 0 {
+			ftr.PushBack(&dsv.Record{V: float64(0)})
+			continue
+		}
 
-		freq := tekstus.WordsFrequenciesOf(inWords,
-			tekstus.BiasedWords, false)
+		in := clean.WikiText(text)
 
-		freq = float64(int(freq*100000)) / 100000
+		freq := tekstus.StringFrequenciesOf(in, tekstus.BiasedWords,
+			false)
 
-		ftr.PushBack(&dsv.Record{V: freq})
+		ftr.PushBack(&dsv.Record{V: Round(freq)})
 	}
 }

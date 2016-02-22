@@ -63,7 +63,7 @@
 		"Name"		: "size_increment"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "sizeratio"
+		"Name"		: "size_ratio"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "upperlowerratio"

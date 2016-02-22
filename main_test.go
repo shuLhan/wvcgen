@@ -25,6 +25,10 @@ func TestSizeIncrement(t *testing.T) {
 	main.Generate("size_increment", fInputDsv)
 }
 
+func TestSizeRatio(t *testing.T) {
+	main.Generate("size_ratio", fInputDsv)
+}
+
 func TestBiasFrequency(t *testing.T) {
 	main.Generate("bias_frequency", fInputDsv)
 }

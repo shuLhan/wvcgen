@@ -18,7 +18,7 @@ type DigitRatio struct {
 
 // init Register to list of feature
 func init() {
-	Register(&DigitRatio{}, dsv.TReal, "digitratio")
+	Register(&DigitRatio{}, dsv.TReal, "digit_ratio")
 }
 
 /*
@@ -35,13 +35,8 @@ func (ftr *DigitRatio) Compute(dataset dsv.Dataset) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {
-		r := &dsv.Record{}
-
 		ratio := tekstus.RatioDigit(rec.String())
 
-		// round it to five digit after comma.
-		r.SetFloat(float64(int(ratio*100000)) / 100000)
-
-		ftr.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: Round(ratio)})
 	}
 }

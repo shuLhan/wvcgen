@@ -53,6 +53,10 @@ func TestCharDistributionInsert(t *testing.T) {
 	main.Generate("char_distribution_insert", fInputDsv)
 }
 
+func TestCompressRate(t *testing.T) {
+	main.Generate("compress_rate", fInputDsv)
+}
+
 func TestBiasFrequency(t *testing.T) {
 	main.Generate("bias_frequency", fInputDsv)
 }

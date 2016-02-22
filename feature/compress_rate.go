@@ -20,7 +20,7 @@ type CompressRate struct {
 
 // init Register to list of feature
 func init() {
-	Register(&CompressRate{}, dsv.TReal, "compressrate")
+	Register(&CompressRate{}, dsv.TReal, "compress_rate")
 }
 
 /*
@@ -68,13 +68,8 @@ func (ftr *CompressRate) Compute(dataset dsv.Dataset) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {
-		r := &dsv.Record{}
-
 		v, _ := compressRateLzw(rec.String())
 
-		// round it to five digit after comma.
-		r.SetFloat(float64(int(v*100000)) / 100000)
-
-		ftr.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: Round(v)})
 	}
 }

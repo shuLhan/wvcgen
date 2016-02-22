@@ -84,7 +84,7 @@
 		"Name"		: "char_distribution_insert"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "compressrate"
+		"Name"		: "compress_rate"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "goodtoken"

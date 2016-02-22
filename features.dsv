@@ -78,7 +78,7 @@
 		"Name"		: "non_alnum_ratio"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "chardiversity"
+		"Name"		: "char_diversity"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "chardistributioninsert"

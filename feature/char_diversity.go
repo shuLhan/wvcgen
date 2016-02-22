@@ -22,7 +22,7 @@ type CharDiversity struct {
 
 // init Register to list of feature
 func init() {
-	Register(&CharDiversity{}, dsv.TReal, "chardiversity")
+	Register(&CharDiversity{}, dsv.TReal, "char_diversity")
 }
 
 /*
@@ -39,14 +39,11 @@ func (ftr *CharDiversity) Compute(dataset dsv.Dataset) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {
-		r := &dsv.Record{}
+		intext := rec.String()
+		textlen := float64(len(intext))
+		nuniq := tekstus.CountUniqChar(intext)
+		v := math.Pow(textlen, 1/float64(1+nuniq))
 
-		n, l := tekstus.CountUniqChar(rec.String())
-		v := math.Pow(float64(l), float64(1/float64(1+n)))
-
-		// round it to five digit after comma.
-		r.SetFloat(float64(int(v*100000)) / 100000)
-
-		ftr.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: Round(v)})
 	}
 }

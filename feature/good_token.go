@@ -49,32 +49,25 @@ var (
 )
 
 func init() {
-	Register(&GoodToken{}, dsv.TInteger, "goodtoken")
+	Register(&GoodToken{}, dsv.TInteger, "good_token")
 }
 
 /*
 GetValues return feature values.
 */
-func (anon *GoodToken) GetValues() dsv.Column {
-	return anon.Column
+func (ftr *GoodToken) GetValues() dsv.Column {
+	return ftr.Column
 }
 
 /*
-Compute if record in column is IP address then it is an anonim and set
-their value to 1, otherwise set to 0.
+Compute number of good token in inserted text.
 */
-func (anon *GoodToken) Compute(dataset dsv.Dataset) {
+func (ftr *GoodToken) Compute(dataset dsv.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
-		r := &dsv.Record{}
+		cnt := tekstus.StringCountTokens(rec.String(), tokens, false)
 
-		s := rec.String()
-
-		cnt := tekstus.StringCountTokens(s, tokens, false)
-
-		r.SetInteger(int64(cnt))
-
-		anon.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: int64(cnt)})
 	}
 }

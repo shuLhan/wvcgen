@@ -57,6 +57,10 @@ func TestCompressRate(t *testing.T) {
 	main.Generate("compress_rate", fInputDsv)
 }
 
+func TestGoodToken(t *testing.T) {
+	main.Generate("good_token", fInputDsv)
+}
+
 func TestBiasFrequency(t *testing.T) {
 	main.Generate("bias_frequency", fInputDsv)
 }

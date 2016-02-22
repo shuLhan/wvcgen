@@ -87,7 +87,7 @@
 		"Name"		: "compress_rate"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "goodtoken"
+		"Name"		: "good_token"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "term_frequency"

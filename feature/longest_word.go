@@ -35,16 +35,22 @@ func (ftr *LongestWord) Compute(dataset dsv.Dataset) {
 	addslen := adds.Len()
 
 	for x, rec := range adds.Records {
-		r := &dsv.Record{}
-		s := rec.String()
+		text := rec.String()
+		textlen := len(text)
 
-		s = clean.WikiText(s)
-		inWords := tekstus.StringSplitWords(s, true, true)
+		if textlen == 0 {
+			ftr.PushBack(&dsv.Record{V: int64(0)})
+			continue
+		}
+
+		text = clean.WikiText(text)
+		inWords := tekstus.StringSplitWords(text, true, true)
 		slong, _ := tekstus.WordsFindLongest(inWords)
+
 		fmt.Printf(">>> %d/%d longest word: %q\n", x, addslen, slong)
 
-		r.SetInteger(int64(len(slong)))
+		slonglen := int64(len(slong))
 
-		ftr.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: slonglen})
 	}
 }

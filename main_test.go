@@ -65,6 +65,10 @@ func TestTermFrequency(t *testing.T) {
 	main.Generate("term_frequency", fInputDsv)
 }
 
+func TestLongestWord(t *testing.T) {
+	main.Generate("longest_word", fInputDsv)
+}
+
 func TestBiasFrequency(t *testing.T) {
 	main.Generate("bias_frequency", fInputDsv)
 }

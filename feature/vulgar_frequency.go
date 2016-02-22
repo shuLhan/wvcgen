@@ -40,8 +40,6 @@ func (ftr *VulgarFrequency) Compute(dataset dsv.Dataset) {
 		freq := tekstus.StringFrequenciesOf(s, tekstus.VulgarWords,
 			false)
 
-		freq = float64(int(freq*100000)) / 100000
-
-		ftr.PushBack(&dsv.Record{V: freq})
+		ftr.PushBack(&dsv.Record{V: Round(freq)})
 	}
 }

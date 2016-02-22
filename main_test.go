@@ -73,6 +73,10 @@ func TestLongestCharSeq(t *testing.T) {
 	main.Generate("longest_char_sequence", fInputDsv)
 }
 
+func TestVulgarFrequency(t *testing.T) {
+	main.Generate("vulgar_frequency", fInputDsv)
+}
+
 func TestBiasFrequency(t *testing.T) {
 	main.Generate("bias_frequency", fInputDsv)
 }

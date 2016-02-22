@@ -11,6 +11,7 @@ package revision
 import (
 	"errors"
 	"io/ioutil"
+	"os"
 )
 
 var (
@@ -63,4 +64,22 @@ func GetContentClean(id string) (string, error) {
 	b, e := ioutil.ReadFile(path)
 
 	return string(b), e
+}
+
+/*
+GetSize return the file size of revision file.
+*/
+func GetSize(id string) int64 {
+	if Dir == "" {
+		return 0
+	}
+
+	path := Dir + "/" + id + ".txt"
+
+	finfo, e := os.Stat(path)
+	if e != nil {
+		return 0
+	}
+
+	return finfo.Size()
 }

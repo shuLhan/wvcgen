@@ -89,7 +89,7 @@ file `features.dsv`,
 
 * "anonim": give a value '1' if an editor is anonymous or '0' otherwise.
 * "commentlen": length of character in the comment supplied with an edit.
-* "sizeincrement": compute the size different between inserted text minus
+* "size_increment": compute the size different between inserted text minus
   deletion.
 * "sizeratio": length of inserted text / length of text deletion.
 

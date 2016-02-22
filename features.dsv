@@ -1,5 +1,6 @@
 {
 	"Input"		: "merge/wvc2010/merge_edits_gold.dat"
+,	"DatasetMode"	: "COLUMNS"
 ,	"MaxRows"	: -1
 ,	"InputMetadata"	: [{
 		"Name"		: "editid"
@@ -59,10 +60,7 @@
 		"Name"		: "commentlen"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "longset_char_sequence"
-	,	"Separator"	: ","
-	},{
-		"Name"		: "sizeincrement"
+		"Name"		: "size_increment"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "sizeratio"
@@ -96,6 +94,9 @@
 	,	"Separator"	: ","
 	},{
 		"Name"		: "longest_word"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "longset_char_sequence"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "vulgar_frequency"

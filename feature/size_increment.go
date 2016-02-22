@@ -6,6 +6,8 @@ package feature
 
 import (
 	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/wvcgen/revision"
+	"math"
 )
 
 /*
@@ -15,9 +17,9 @@ type SizeIncrement struct {
 	dsv.Column
 }
 
+// init will register the featyre to the global list.
 func init() {
-	// Register to list of feature
-	Register(&SizeIncrement{}, dsv.TInteger, "sizeincrement")
+	Register(&SizeIncrement{}, dsv.TInteger, "size_increment")
 }
 
 /*
@@ -32,24 +34,21 @@ Compute the size increment by substracting length of addition with the length
 of deletion.
 */
 func (ftr *SizeIncrement) Compute(dataset dsv.Dataset) {
-	adds := dataset.GetColumnByName("additions")
-	dels := dataset.GetColumnByName("deletions")
+	oldid := dataset.GetColumnByName("oldrevisionid")
+	newid := dataset.GetColumnByName("newrevisionid")
 
-	delslen := dels.Len()
+	oldidlen := newid.Len()
 
-	for x, rec := range adds.Records {
-		if x >= delslen {
+	for x, rec := range newid.Records {
+		if x >= oldidlen {
 			// Just in case additions is greater than deletions
 			break
 		}
 
-		r := &dsv.Record{}
+		newlen := revision.GetSize(rec.String())
+		oldlen := revision.GetSize(oldid.Records[x].String())
+		difflen := math.Abs(float64(newlen - oldlen))
 
-		newlen := len(rec.String())
-		oldlen := len(dels.Records[x].String())
-
-		r.SetInteger(int64(newlen - oldlen))
-
-		ftr.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: difflen})
 	}
 }

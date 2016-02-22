@@ -13,6 +13,14 @@ const (
 	fInputDsv = "features_test.dsv"
 )
 
+func TestAnonim(t *testing.T) {
+	main.Generate("anonim", fInputDsv)
+}
+
+func TestSizeIncrement(t *testing.T) {
+	main.Generate("size_increment", fInputDsv)
+}
+
 func TestBiasFrequency(t *testing.T) {
 	main.Generate("bias_frequency", fInputDsv)
 }

@@ -35,7 +35,14 @@ func (ftr *SexWordsFrequency) Compute(dataset dsv.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
-		in := clean.WikiText(rec.String())
+		text := rec.String()
+
+		if len(text) == 0 {
+			ftr.PushBack(&dsv.Record{V: float64(0)})
+			continue
+		}
+
+		in := clean.WikiText(text)
 
 		if len(in) == 0 {
 			ftr.PushBack(&dsv.Record{V: float64(0)})
@@ -47,8 +54,6 @@ func (ftr *SexWordsFrequency) Compute(dataset dsv.Dataset) {
 		freq := tekstus.WordsFrequenciesOf(inWords,
 			tekstus.SexWords, false)
 
-		freq = float64(int(freq*100000)) / 100000
-
-		ftr.PushBack(&dsv.Record{V: freq})
+		ftr.PushBack(&dsv.Record{V: Round(freq)})
 	}
 }

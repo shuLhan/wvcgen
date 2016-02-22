@@ -36,14 +36,25 @@ func (ftr *BadWordsFrequency) Compute(dataset dsv.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
-		in := clean.WikiText(rec.String())
-		inWords := tekstus.StringSplitWords(in, true, false)
+		intext := rec.String()
+
+		if len(intext) == 0 {
+			ftr.PushBack(&dsv.Record{V: float64(0)})
+			continue
+		}
+
+		intext = clean.WikiText(intext)
+
+		if len(intext) == 0 {
+			ftr.PushBack(&dsv.Record{V: float64(0)})
+			continue
+		}
+
+		inWords := tekstus.StringSplitWords(intext, true, false)
 
 		freq := tekstus.WordsFrequenciesOf(inWords, tekstus.BadWords,
 			false)
 
-		freq = float64(int(freq*100000)) / 100000
-
-		ftr.PushBack(&dsv.Record{V: freq})
+		ftr.PushBack(&dsv.Record{V: Round(freq)})
 	}
 }

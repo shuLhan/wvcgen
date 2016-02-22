@@ -41,6 +41,10 @@ func TestDigitRatio(t *testing.T) {
 	main.Generate("digit_ratio", fInputDsv)
 }
 
+func TestNonAlnumRatio(t *testing.T) {
+	main.Generate("non_alnum_ratio", fInputDsv)
+}
+
 func TestBiasFrequency(t *testing.T) {
 	main.Generate("bias_frequency", fInputDsv)
 }

@@ -10,7 +10,8 @@ import (
 )
 
 /*
-NonAlnumRatio is a feature that compare non alpha-numeric to all charachter.
+NonAlnumRatio is a feature that compare non alpha-numeric to all charachter in
+inserted text.
 */
 type NonAlnumRatio struct {
 	dsv.Column
@@ -18,7 +19,7 @@ type NonAlnumRatio struct {
 
 // init Register to list of feature
 func init() {
-	Register(&NonAlnumRatio{}, dsv.TReal, "nonalnumratio")
+	Register(&NonAlnumRatio{}, dsv.TReal, "non_alnum_ratio")
 }
 
 /*
@@ -29,20 +30,14 @@ func (ftr *NonAlnumRatio) GetValues() dsv.Column {
 }
 
 /*
-Compute non-alphanumeric ratio ratio with all character in new version.
+Compute non-alphanumeric ratio with all character in inserted text.
 */
 func (ftr *NonAlnumRatio) Compute(dataset dsv.Dataset) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {
-		r := &dsv.Record{}
+		ratio := tekstus.RatioNonAlnumChar(rec.String(), false)
 
-		n, l := tekstus.CountAlnumChar(rec.String())
-		ratio := float64(l-n) / float64(1+l)
-
-		// round it to five digit after comma.
-		r.SetFloat(float64(int(ratio*100000)) / 100000)
-
-		ftr.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: Round(ratio)})
 	}
 }

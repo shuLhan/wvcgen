@@ -75,7 +75,7 @@
 		"Name"		: "digit_ratio"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "nonalnumratio"
+		"Name"		: "non_alnum_ratio"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "chardiversity"

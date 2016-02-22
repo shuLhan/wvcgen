@@ -61,6 +61,10 @@ func TestGoodToken(t *testing.T) {
 	main.Generate("good_token", fInputDsv)
 }
 
+func TestTermFrequency(t *testing.T) {
+	main.Generate("term_frequency", fInputDsv)
+}
+
 func TestBiasFrequency(t *testing.T) {
 	main.Generate("bias_frequency", fInputDsv)
 }

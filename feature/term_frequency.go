@@ -38,32 +38,32 @@ func (ftr *TermFrequency) Compute(dataset dsv.Dataset) {
 	recordslen := len(adds.Records)
 
 	for x, rec := range adds.Records {
-		r := &dsv.Record{}
+		// Get inserted words.
+		intext := rec.String()
 
-		// Get inserted text.
-		inText := rec.String()
-		inText = clean.WikiText(inText)
-
-		// Get content of new revision
-		revid := newrevidx.Records[x].String()
-		fmt.Printf(">>> term_frequency: %d/%d processing new revision id %q\n", x,
-			recordslen, revid)
-
-		newText, e := revision.GetContentClean(revid)
-		if e != nil {
-			r.SetFloat(0)
-			ftr.PushBack(r)
+		if len(intext) == 0 {
+			ftr.PushBack(&dsv.Record{V: float64(0)})
 			continue
 		}
 
-		newWords := tekstus.StringSplitWords(newText, true, false)
-		inWords := tekstus.StringSplitWords(inText, true, true)
+		intext = clean.WikiText(intext)
+		inWords := tekstus.StringSplitWords(intext, true, true)
+
+		// Get content of new revision.
+		revid := newrevidx.Records[x].String()
+		fmt.Printf(">>> term_frequency: %d/%d processing %q\n", x,
+			recordslen, revid)
+
+		newtext, e := revision.GetContentClean(revid)
+		if e != nil {
+			ftr.PushBack(&dsv.Record{V: float64(0)})
+			continue
+		}
+
+		newWords := tekstus.StringSplitWords(newtext, true, false)
 
 		freq := tekstus.WordsFrequenciesOf(newWords, inWords, false)
 
-		// round it to five digit after comma.
-		r.SetFloat(float64(int(freq*100000)) / 100000)
-
-		ftr.PushBack(r)
+		ftr.PushBack(&dsv.Record{V: Round(freq)})
 	}
 }

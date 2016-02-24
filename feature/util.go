@@ -5,9 +5,13 @@
 package feature
 
 const (
+	// RoundDigit define maximum digit for rounding float value.
 	RoundDigit = float64(100000)
 )
 
+/*
+Round return float value that has been rounded to `RoundDigit` after comma.
+*/
 func Round(v float64) float64 {
 	return float64(int(v*RoundDigit)) / RoundDigit
 }

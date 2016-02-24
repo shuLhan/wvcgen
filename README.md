@@ -89,24 +89,24 @@ file `features.dsv`,
 ### Metadata
 
 * "anonim": give a value '1' if an editor is anonymous or '0' otherwise.
-* "commentlen": length of character in the comment supplied with an edit.
+* "comment_length": length of character in the comment supplied with an edit.
 * "size_increment": compute the size different between inserted text minus
   deletion.
-* "sizeratio": length of inserted text / length of text deletion.
+* "size_ratio": length of new revision divided by length of old revision.
 
 ### Text
 
-* "upperlowerratio": ratio of uppercase to lowercase in inserted text.
-* "uppertoallratio": ratio of uppercase to all character in inserted text.
-* "digitratio": ratio of digit to all character in inserted text.
-* "nonalnumratio": ratio of non alpha-numeric to all character in inserted
+* "upper_lower_ratio": ratio of uppercase to lowercase in inserted text.
+* "upper_to_all_ratio": ratio of uppercase to all character in inserted text.
+* "digit_ratio": ratio of digit to all character in inserted text.
+* "non_alnum_ratio": ratio of non alpha-numeric to all character in inserted
   text.
-* "chardiversity": length of inserted text power of (1 / number of unique
+* "char_diversity": length of inserted text power of (1 / number of unique
   character).
-* "chardistributioninsert": the distribution of character using
+* "char_distribution_insert": the distribution of character using
   Kullback-Leibler divergence algorithm.
-* "compressrate": compute the compression rate of inserted text using LZW.
-* "goodtoken": compute number of good or known Wikipedia token in inserted
+* "compress_rate": compute the compression rate of inserted text using LZW.
+* "good_token": compute number of good or known Wikipedia token in inserted
 text.
 * "term_frequency": compute frequency of inserted word in new revision.
 * "longest_word": the length of longest word in inserted text.

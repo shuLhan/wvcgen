@@ -5,7 +5,7 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/wvcgen/revision"
 	"math"
 )
@@ -13,27 +13,18 @@ import (
 /*
 SizeIncrement is a feature that compare the size of new with old revision.
 */
-type SizeIncrement struct {
-	dsv.Column
-}
+type SizeIncrement Feature
 
 // init will register the featyre to the global list.
 func init() {
-	Register(&SizeIncrement{}, dsv.TInteger, "size_increment")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *SizeIncrement) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&SizeIncrement{}, tabula.TInteger, "size_increment")
 }
 
 /*
 Compute the size increment by substracting length of addition with the length
 of deletion.
 */
-func (ftr *SizeIncrement) Compute(dataset dsv.Dataset) {
+func (ftr *SizeIncrement) Compute(dataset tabula.Dataset) {
 	oldid := dataset.GetColumnByName("oldrevisionid")
 	newid := dataset.GetColumnByName("newrevisionid")
 
@@ -49,6 +40,6 @@ func (ftr *SizeIncrement) Compute(dataset dsv.Dataset) {
 		oldlen := revision.GetSize(oldid.Records[x].String())
 		difflen := math.Abs(float64(newlen - oldlen))
 
-		ftr.PushBack(&dsv.Record{V: difflen})
+		ftr.PushBack(&tabula.Record{V: difflen})
 	}
 }

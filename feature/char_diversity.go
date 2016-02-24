@@ -5,7 +5,7 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 	"math"
 )
@@ -16,26 +16,17 @@ length of inserted text, given by expression
 
 	length^(1/differentchars)
 */
-type CharDiversity struct {
-	dsv.Column
-}
+type CharDiversity Feature
 
 // init Register to list of feature
 func init() {
-	Register(&CharDiversity{}, dsv.TReal, "char_diversity")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *CharDiversity) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&CharDiversity{}, tabula.TReal, "char_diversity")
 }
 
 /*
 Compute character diversity.
 */
-func (ftr *CharDiversity) Compute(dataset dsv.Dataset) {
+func (ftr *CharDiversity) Compute(dataset tabula.Dataset) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {
@@ -44,6 +35,6 @@ func (ftr *CharDiversity) Compute(dataset dsv.Dataset) {
 		nuniq := tekstus.CountUniqChar(intext)
 		v := math.Pow(textlen, 1/float64(1+nuniq))
 
-		ftr.PushBack(&dsv.Record{V: Round(v)})
+		ftr.PushBack(&tabula.Record{V: Round(v)})
 	}
 }

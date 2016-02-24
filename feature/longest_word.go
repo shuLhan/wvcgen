@@ -6,31 +6,22 @@ package feature
 
 import (
 	"fmt"
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 	"github.com/shuLhan/wvcgen/clean"
 )
 
 // LongestWord find and return the longset word in inserted text.
-type LongestWord struct {
-	dsv.Column
-}
+type LongestWord Feature
 
 func init() {
-	Register(&LongestWord{}, dsv.TInteger, "longest_word")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *LongestWord) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&LongestWord{}, tabula.TInteger, "longest_word")
 }
 
 /*
 Compute the longest word in inserted text.
 */
-func (ftr *LongestWord) Compute(dataset dsv.Dataset) {
+func (ftr *LongestWord) Compute(dataset tabula.Dataset) {
 	adds := dataset.GetColumnByName("additions")
 	addslen := adds.Len()
 
@@ -39,7 +30,7 @@ func (ftr *LongestWord) Compute(dataset dsv.Dataset) {
 		textlen := len(text)
 
 		if textlen == 0 {
-			ftr.PushBack(&dsv.Record{V: int64(0)})
+			ftr.PushBack(&tabula.Record{V: int64(0)})
 			continue
 		}
 
@@ -51,6 +42,6 @@ func (ftr *LongestWord) Compute(dataset dsv.Dataset) {
 
 		slonglen := int64(len(slong))
 
-		ftr.PushBack(&dsv.Record{V: slonglen})
+		ftr.PushBack(&tabula.Record{V: slonglen})
 	}
 }

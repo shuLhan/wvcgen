@@ -8,26 +8,17 @@ import (
 	"bytes"
 	"compress/lzw"
 	"fmt"
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 )
 
 /*
 CompressRate is a feature that compute compression rate of inserted text.
 */
-type CompressRate struct {
-	dsv.Column
-}
+type CompressRate Feature
 
 // init Register to list of feature
 func init() {
-	Register(&CompressRate{}, dsv.TReal, "compress_rate")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *CompressRate) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&CompressRate{}, tabula.TReal, "compress_rate")
 }
 
 /*
@@ -64,12 +55,12 @@ func compressRateLzw(text string) (float64, error) {
 /*
 Compute compress rate of inserted text.
 */
-func (ftr *CompressRate) Compute(dataset dsv.Dataset) {
+func (ftr *CompressRate) Compute(dataset tabula.Dataset) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {
 		v, _ := compressRateLzw(rec.String())
 
-		ftr.PushBack(&dsv.Record{V: Round(v)})
+		ftr.PushBack(&tabula.Record{V: Round(v)})
 	}
 }

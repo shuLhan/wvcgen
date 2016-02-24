@@ -5,7 +5,7 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 	"github.com/shuLhan/wvcgen/clean"
 )
@@ -13,25 +13,16 @@ import (
 /*
 VulgarFrequency will count frequency of vulgar words in inserted text.
 */
-type VulgarFrequency struct {
-	dsv.Column
-}
+type VulgarFrequency Feature
 
 func init() {
-	Register(&VulgarFrequency{}, dsv.TReal, "vulgar_frequency")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *VulgarFrequency) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&VulgarFrequency{}, tabula.TReal, "vulgar_frequency")
 }
 
 /*
 Compute frequency vulgar words in inserted text.
 */
-func (ftr *VulgarFrequency) Compute(dataset dsv.Dataset) {
+func (ftr *VulgarFrequency) Compute(dataset tabula.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
@@ -40,6 +31,6 @@ func (ftr *VulgarFrequency) Compute(dataset dsv.Dataset) {
 		freq := tekstus.StringFrequenciesOf(s, tekstus.VulgarWords,
 			false)
 
-		ftr.PushBack(&dsv.Record{V: Round(freq)})
+		ftr.PushBack(&tabula.Record{V: Round(freq)})
 	}
 }

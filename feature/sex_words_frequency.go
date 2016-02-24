@@ -5,7 +5,7 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 	"github.com/shuLhan/wvcgen/clean"
 )
@@ -13,39 +13,30 @@ import (
 /*
 SexWordsFrequency will count frequency of non-vulgar, sex-related words.
 */
-type SexWordsFrequency struct {
-	dsv.Column
-}
+type SexWordsFrequency Feature
 
 func init() {
-	Register(&SexWordsFrequency{}, dsv.TReal, "sex_words_frequency")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *SexWordsFrequency) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&SexWordsFrequency{}, tabula.TReal, "sex_words_frequency")
 }
 
 /*
 Compute frequency of sex related words.
 */
-func (ftr *SexWordsFrequency) Compute(dataset dsv.Dataset) {
+func (ftr *SexWordsFrequency) Compute(dataset tabula.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
 		text := rec.String()
 
 		if len(text) == 0 {
-			ftr.PushBack(&dsv.Record{V: float64(0)})
+			ftr.PushBack(&tabula.Record{V: float64(0)})
 			continue
 		}
 
 		in := clean.WikiText(text)
 
 		if len(in) == 0 {
-			ftr.PushBack(&dsv.Record{V: float64(0)})
+			ftr.PushBack(&tabula.Record{V: float64(0)})
 			continue
 		}
 
@@ -54,6 +45,6 @@ func (ftr *SexWordsFrequency) Compute(dataset dsv.Dataset) {
 		freq := tekstus.WordsFrequenciesOf(inWords,
 			tekstus.SexWords, false)
 
-		ftr.PushBack(&dsv.Record{V: Round(freq)})
+		ftr.PushBack(&tabula.Record{V: Round(freq)})
 	}
 }

@@ -6,7 +6,7 @@ package feature
 
 import (
 	"fmt"
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 	"github.com/shuLhan/wvcgen/clean"
 	"github.com/shuLhan/wvcgen/revision"
@@ -14,25 +14,16 @@ import (
 
 // TermFrequency compute frequency of words in inserted text againts the new
 // revision.
-type TermFrequency struct {
-	dsv.Column
-}
+type TermFrequency Feature
 
 func init() {
-	Register(&TermFrequency{}, dsv.TReal, "term_frequency")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *TermFrequency) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&TermFrequency{}, tabula.TReal, "term_frequency")
 }
 
 /*
 Compute the frequency of inserted words.
 */
-func (ftr *TermFrequency) Compute(dataset dsv.Dataset) {
+func (ftr *TermFrequency) Compute(dataset tabula.Dataset) {
 	newrevidx := dataset.GetColumnByName("newrevisionid")
 	adds := dataset.GetColumnByName("additions")
 	recordslen := len(adds.Records)
@@ -42,7 +33,7 @@ func (ftr *TermFrequency) Compute(dataset dsv.Dataset) {
 		intext := rec.String()
 
 		if len(intext) == 0 {
-			ftr.PushBack(&dsv.Record{V: float64(0)})
+			ftr.PushBack(&tabula.Record{V: float64(0)})
 			continue
 		}
 
@@ -56,7 +47,7 @@ func (ftr *TermFrequency) Compute(dataset dsv.Dataset) {
 
 		newtext, e := revision.GetContentClean(revid)
 		if e != nil {
-			ftr.PushBack(&dsv.Record{V: float64(0)})
+			ftr.PushBack(&tabula.Record{V: float64(0)})
 			continue
 		}
 
@@ -64,6 +55,6 @@ func (ftr *TermFrequency) Compute(dataset dsv.Dataset) {
 
 		freq := tekstus.WordsFrequenciesOf(newWords, inWords, false)
 
-		ftr.PushBack(&dsv.Record{V: Round(freq)})
+		ftr.PushBack(&tabula.Record{V: Round(freq)})
 	}
 }

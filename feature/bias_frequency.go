@@ -5,7 +5,7 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 	"github.com/shuLhan/wvcgen/clean"
 )
@@ -14,31 +14,22 @@ import (
 BiasFrequency will count frequency of colloquial words with high bias in
 inserted text.
 */
-type BiasFrequency struct {
-	dsv.Column
-}
+type BiasFrequency Feature
 
 func init() {
-	Register(&BiasFrequency{}, dsv.TReal, "bias_frequency")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *BiasFrequency) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&BiasFrequency{}, tabula.TReal, "bias_frequency")
 }
 
 /*
 Compute frequency of biased words.
 */
-func (ftr *BiasFrequency) Compute(dataset dsv.Dataset) {
+func (ftr *BiasFrequency) Compute(dataset tabula.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
 		text := rec.String()
 		if len(text) == 0 {
-			ftr.PushBack(&dsv.Record{V: float64(0)})
+			ftr.PushBack(&tabula.Record{V: float64(0)})
 			continue
 		}
 
@@ -47,6 +38,6 @@ func (ftr *BiasFrequency) Compute(dataset dsv.Dataset) {
 		freq := tekstus.StringFrequenciesOf(in, tekstus.BiasedWords,
 			false)
 
-		ftr.PushBack(&dsv.Record{V: Round(freq)})
+		ftr.PushBack(&tabula.Record{V: Round(freq)})
 	}
 }

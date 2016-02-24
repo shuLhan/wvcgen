@@ -5,36 +5,27 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"net"
 )
 
 // Anonim compute wether editor is login or from anonymous
 // (logged by IP address).
-type Anonim struct {
-	dsv.Column
-}
+type Anonim Feature
 
 func init() {
-	Register(&Anonim{}, dsv.TInteger, "anonim")
-}
-
-/*
-GetValues return feature values.
-*/
-func (anon *Anonim) GetValues() dsv.Column {
-	return anon.Column
+	Register(&Anonim{}, tabula.TInteger, "anonim")
 }
 
 /*
 Compute if record in column is IP address then it is an anonim and set
 their value to 1, otherwise set to 0.
 */
-func (anon *Anonim) Compute(dataset dsv.Dataset) {
+func (anon *Anonim) Compute(dataset tabula.Dataset) {
 	col := dataset.GetColumnByName("editor")
 
 	for _, rec := range col.Records {
-		r := &dsv.Record{
+		r := &tabula.Record{
 			V: float64(0.0),
 		}
 

@@ -5,33 +5,24 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/wvcgen/revision"
 )
 
 /*
 SizeRatio is a feature that compare the size ratio of new with old revision.
 */
-type SizeRatio struct {
-	dsv.Column
-}
+type SizeRatio Feature
 
 func init() {
 	// Register to list of feature
-	Register(&SizeRatio{}, dsv.TReal, "size_ratio")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *SizeRatio) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&SizeRatio{}, tabula.TReal, "size_ratio")
 }
 
 /*
 Compute ratio of size between new and old revision.
 */
-func (ftr *SizeRatio) Compute(dataset dsv.Dataset) {
+func (ftr *SizeRatio) Compute(dataset tabula.Dataset) {
 	oldid := dataset.GetColumnByName("oldrevisionid")
 	newid := dataset.GetColumnByName("newrevisionid")
 
@@ -47,6 +38,6 @@ func (ftr *SizeRatio) Compute(dataset dsv.Dataset) {
 		oldlen := revision.GetSize(oldid.Records[x].String())
 		difflen := float64(1+newlen) / float64(1+oldlen)
 
-		ftr.PushBack(&dsv.Record{V: Round(difflen)})
+		ftr.PushBack(&tabula.Record{V: Round(difflen)})
 	}
 }

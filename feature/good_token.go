@@ -5,14 +5,12 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 )
 
 // GoodToken count how many good token in inserted text.
-type GoodToken struct {
-	dsv.Column
-}
+type GoodToken Feature
 
 var (
 	tokens = []string{
@@ -49,25 +47,18 @@ var (
 )
 
 func init() {
-	Register(&GoodToken{}, dsv.TInteger, "good_token")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *GoodToken) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&GoodToken{}, tabula.TInteger, "good_token")
 }
 
 /*
 Compute number of good token in inserted text.
 */
-func (ftr *GoodToken) Compute(dataset dsv.Dataset) {
+func (ftr *GoodToken) Compute(dataset tabula.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
 		cnt := tekstus.StringCountTokens(rec.String(), tokens, false)
 
-		ftr.PushBack(&dsv.Record{V: int64(cnt)})
+		ftr.PushBack(&tabula.Record{V: int64(cnt)})
 	}
 }

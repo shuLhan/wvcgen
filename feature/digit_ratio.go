@@ -5,38 +5,29 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 )
 
 /*
 DigitRatio is a feature that compare digit to all charachter.
 */
-type DigitRatio struct {
-	dsv.Column
-}
+type DigitRatio Feature
 
 // init Register to list of feature
 func init() {
-	Register(&DigitRatio{}, dsv.TReal, "digit_ratio")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *DigitRatio) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&DigitRatio{}, tabula.TReal, "digit_ratio")
 }
 
 /*
 Compute calculate digit ratio in new revision.
 */
-func (ftr *DigitRatio) Compute(dataset dsv.Dataset) {
+func (ftr *DigitRatio) Compute(dataset tabula.Dataset) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {
 		ratio := tekstus.RatioDigit(rec.String())
 
-		ftr.PushBack(&dsv.Record{V: Round(ratio)})
+		ftr.PushBack(&tabula.Record{V: Round(ratio)})
 	}
 }

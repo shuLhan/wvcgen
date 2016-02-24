@@ -7,6 +7,7 @@ package main
 import (
 	"fmt"
 	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/wvcgen/feature"
 	wvcreader "github.com/shuLhan/wvcgen/reader"
 	"github.com/shuLhan/wvcgen/revision"
@@ -51,16 +52,16 @@ func InitReadWriter(finput string) (reader *wvcreader.Reader,
 computeFeatures will compute each feature listed in writer output metadata.
 */
 func computeFeatures(reader *wvcreader.Reader, writer *dsv.Writer) (
-	ftrValues *dsv.Dataset,
+	ftrValues *tabula.Dataset,
 ) {
-	ftrValues = &dsv.Dataset{}
+	ftrValues = &tabula.Dataset{}
 
-	ftrValues.Init(dsv.DatasetModeColumns, nil, nil)
+	ftrValues.Init(tabula.DatasetModeColumns, nil, nil)
 
 	for _, md := range writer.OutputMetadata {
 		fmt.Println(">>> computing feature", md.Name)
 
-		ftr := feature.ListFeatureGetByName(md.Name)
+		ftr := feature.GetByName(md.Name)
 
 		// No feature name found, search the column name in
 		// input metadata.
@@ -71,7 +72,9 @@ func computeFeatures(reader *wvcreader.Reader, writer *dsv.Writer) (
 
 		ftr.Compute(reader.Dataset)
 
-		ftrValues.PushColumn(ftr.GetValues())
+		col := ftr.Interface().(*tabula.Column)
+
+		ftrValues.PushColumn(*col)
 	}
 
 	return
@@ -81,7 +84,7 @@ func computeFeatures(reader *wvcreader.Reader, writer *dsv.Writer) (
 getAsInputColumn return feature values as in input column.
 */
 func getAsInputColumn(reader *wvcreader.Reader, colName string,
-	ftrValues *dsv.Dataset,
+	ftrValues *tabula.Dataset,
 ) {
 	ftr := reader.GetColumnByName(colName)
 
@@ -93,8 +96,15 @@ func getAsInputColumn(reader *wvcreader.Reader, colName string,
 	ftrValues.PushColumn(*ftr)
 }
 
+/*
+Generate start computing the feature values which has been defined in
+input file `finput`.
+
+If `featureName` is not empty, it will be added to list of feature that will
+be computed.
+*/
 func Generate(featureName, finput string) {
-	var ftrValues *dsv.Dataset
+	var ftrValues *tabula.Dataset
 	var e error
 	var n int
 

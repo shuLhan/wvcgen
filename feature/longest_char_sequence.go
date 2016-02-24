@@ -5,32 +5,23 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 )
 
 /*
 LongestCharSeq will compute maximum sequence of character at inserted text.
 */
-type LongestCharSeq struct {
-	dsv.Column
-}
+type LongestCharSeq Feature
 
 func init() {
-	Register(&LongestCharSeq{}, dsv.TInteger, "longest_char_sequence")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *LongestCharSeq) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&LongestCharSeq{}, tabula.TInteger, "longest_char_sequence")
 }
 
 /*
 Compute maximum sequence of character at inserted text.
 */
-func (ftr *LongestCharSeq) Compute(dataset dsv.Dataset) {
+func (ftr *LongestCharSeq) Compute(dataset tabula.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
@@ -38,6 +29,6 @@ func (ftr *LongestCharSeq) Compute(dataset dsv.Dataset) {
 
 		_, v := tekstus.GetMaxCharSequence(text)
 
-		ftr.PushBack(&dsv.Record{V: int64(v)})
+		ftr.PushBack(&tabula.Record{V: int64(v)})
 	}
 }

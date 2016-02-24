@@ -5,38 +5,29 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 )
 
 /*
 UpperLowerRatio is a feature that compare uppercase and lowercase characters.
 */
-type UpperLowerRatio struct {
-	dsv.Column
-}
+type UpperLowerRatio Feature
 
+// init Register to list of feature
 func init() {
-	// Register to list of feature
-	Register(&UpperLowerRatio{}, dsv.TReal, "upper_lower_ratio")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *UpperLowerRatio) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&UpperLowerRatio{}, tabula.TReal, "upper_lower_ratio")
 }
 
 /*
 Compute ratio of uppercase and lowercase in new revision.
 */
-func (ftr *UpperLowerRatio) Compute(dataset dsv.Dataset) {
+func (ftr *UpperLowerRatio) Compute(dataset tabula.Dataset) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {
 		ratio := tekstus.RatioUpperLowerChar(rec.String())
 
-		ftr.PushBack(&dsv.Record{V: Round(ratio)})
+		ftr.PushBack(&tabula.Record{V: Round(ratio)})
 	}
 }

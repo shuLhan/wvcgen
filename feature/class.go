@@ -5,37 +5,28 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 )
 
 /*
 Class change the classification from text to numeric. The "regular" edit
 will become 0 and the "vandalism" will become 1.
 */
-type Class struct {
-	dsv.Column
-}
+type Class Feature
 
 func init() {
-	Register(&Class{}, dsv.TInteger, "class")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *Class) GetValues() dsv.Column {
-	return ftr.Column
+	Register(&Class{}, tabula.TInteger, "class")
 }
 
 /*
 Compute change the classification from text to numeric. The "regular" edit
 will become 0 and the "vandalism" will become 1.
 */
-func (ftr *Class) Compute(dataset dsv.Dataset) {
+func (ftr *Class) Compute(dataset tabula.Dataset) {
 	col := dataset.GetColumnByName("class")
 
 	for _, rec := range col.Records {
-		r := &dsv.Record{
+		r := &tabula.Record{
 			V: int64(0),
 		}
 

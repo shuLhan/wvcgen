@@ -5,7 +5,7 @@
 package feature
 
 import (
-	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/wvcgen/revision"
 )
 
@@ -13,27 +13,18 @@ import (
 CharDistributionInsert measure divergence of the character
 distribution of the inserted text with respect to the expectation.
 */
-type CharDistributionInsert struct {
-	dsv.Column
-}
+type CharDistributionInsert Feature
 
 // init Register to list of feature
 func init() {
-	Register(&CharDistributionInsert{}, dsv.TReal,
+	Register(&CharDistributionInsert{}, tabula.TReal,
 		"char_distribution_insert")
-}
-
-/*
-GetValues return feature values.
-*/
-func (ftr *CharDistributionInsert) GetValues() dsv.Column {
-	return ftr.Column
 }
 
 /*
 Compute character distribution of inserted text.
 */
-func (ftr *CharDistributionInsert) Compute(dataset dsv.Dataset) {
+func (ftr *CharDistributionInsert) Compute(dataset tabula.Dataset) {
 	oldrevid := dataset.GetColumnByName("oldrevisionid")
 	adds := dataset.GetColumnByName("additions")
 
@@ -42,7 +33,7 @@ func (ftr *CharDistributionInsert) Compute(dataset dsv.Dataset) {
 		oldText, e := revision.GetContent(rold.String())
 
 		if e != nil {
-			ftr.PushBack(&dsv.Record{V: 0.0})
+			ftr.PushBack(&tabula.Record{V: 0.0})
 			continue
 		}
 
@@ -51,6 +42,6 @@ func (ftr *CharDistributionInsert) Compute(dataset dsv.Dataset) {
 
 		divergence := KullbackLeiblerDivergence(oldText, inText)
 
-		ftr.PushBack(&dsv.Record{V: Round(divergence)})
+		ftr.PushBack(&tabula.Record{V: Round(divergence)})
 	}
 }

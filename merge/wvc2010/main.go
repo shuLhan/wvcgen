@@ -7,6 +7,7 @@ package main
 import (
 	"fmt"
 	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus/diff"
 	"io"
 )
@@ -109,7 +110,7 @@ func doDiff(readset *dsv.Reader) {
 
 		dels := diffs.GetAllDels()
 		delstr := dels.Join(" ")
-		delrec, e := dsv.NewRecord(delstr, dsv.TString)
+		delrec, e := tabula.NewRecord(delstr, tabula.TString)
 
 		if e != nil {
 			panic(e)
@@ -117,13 +118,13 @@ func doDiff(readset *dsv.Reader) {
 
 		adds := diffs.GetAllAdds()
 		addstr := adds.Join(" ")
-		addrec, e := dsv.NewRecord(addstr, dsv.TString)
+		addrec, e := tabula.NewRecord(addstr, tabula.TString)
 
 		if e != nil {
 			panic(e)
 		}
 
-		diffrow := dsv.Row{}
+		diffrow := tabula.Row{}
 
 		diffrow.PushBack(delrec)
 		diffrow.PushBack(addrec)

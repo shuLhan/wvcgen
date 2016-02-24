@@ -11,7 +11,8 @@ import (
 )
 
 /*
-SizeIncrement is a feature that compare the size of new with old revision.
+SizeIncrement is a feature that compare the size of new with old revision by
+subtracting their length.
 */
 type SizeIncrement Feature
 
@@ -21,8 +22,7 @@ func init() {
 }
 
 /*
-Compute the size increment by substracting length of addition with the length
-of deletion.
+Compute the absolute size increment.
 */
 func (ftr *SizeIncrement) Compute(dataset tabula.Dataset) {
 	oldid := dataset.GetColumnByName("oldrevisionid")

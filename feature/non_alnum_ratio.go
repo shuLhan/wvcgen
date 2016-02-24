@@ -10,7 +10,7 @@ import (
 )
 
 /*
-NonAlnumRatio is a feature that compare non alpha-numeric to all charachter in
+NonAlnumRatio is a feature that compare non alpha-numeric to all character in
 inserted text.
 */
 type NonAlnumRatio Feature

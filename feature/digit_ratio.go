@@ -10,7 +10,7 @@ import (
 )
 
 /*
-DigitRatio is a feature that compare digit to all charachter.
+DigitRatio is a feature that compare digit to all character.
 */
 type DigitRatio Feature
 

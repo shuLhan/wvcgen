@@ -15,6 +15,10 @@ import (
 	"strings"
 )
 
+/*
+WikiText will remove URI, wiki syntax and and mark-up, multiple spaces in
+text and return it.
+*/
 func WikiText(text string) string {
 	text = tekstus.StringRemoveURI(text)
 	text = tekstus.StringRemoveWikiMarkup(text)
@@ -42,6 +46,10 @@ func WikiText(text string) string {
 	return text
 }
 
+/*
+WikiFile will remove URI, wiki syntax and and mark-up, multiple spaces in
+content of file `in` and save it in file `out`.
+*/
 func WikiFile(in, out string) {
 	bufIn, e := ioutil.ReadFile(in)
 	if e != nil {

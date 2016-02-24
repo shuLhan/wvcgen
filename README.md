@@ -1,4 +1,5 @@
 [![GoDoc](https://godoc.org/github.com/shuLhan/wvcgen?status.svg)](https://godoc.org/github.com/shuLhan/wvcgen)
+[![Go Report Card](https://goreportcard.com/badge/github.com/shuLhan/wvcgen)](https://goreportcard.com/report/github.com/shuLhan/wvcgen)
 
 # wvcgen
 

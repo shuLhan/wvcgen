@@ -102,6 +102,9 @@
 		"Name"		: "words_vulgar_frequency"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "words_vulgar_impact"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "words_pronoun_frequency"
 	,	"Separator"	: ","
 	},{

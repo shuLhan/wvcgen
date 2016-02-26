@@ -116,8 +116,9 @@ text.
 ### Language
 
 * "words_vulgar_frequency" compute frequency of vulgar words in inserted text.
+* "words_vulgar_impact" compute increased of vulgar words in inserted text.
 * "words_pronoun_frequency" compute frequency of colloquial and slang pronoun
-in inserted text.
+  in inserted text.
 * "words_bias_frequency" compute frequency of colloquial words with high bias
 in inserted text.
 * "words_sex_frequency" compute frequency of sex-related, non-vulgar words

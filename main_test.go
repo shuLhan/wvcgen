@@ -92,3 +92,7 @@ func TestSexWordsFrequency(t *testing.T) {
 func TestBadWordsFrequency(t *testing.T) {
 	main.Generate("bad_words_frequency", fInputDsv)
 }
+
+func TestAllWordsFrequency(t *testing.T) {
+	main.Generate("all_words_frequency", fInputDsv)
+}

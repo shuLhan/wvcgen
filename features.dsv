@@ -114,6 +114,9 @@
 		"Name"		: "bad_words_frequency"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "all_words_frequency"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

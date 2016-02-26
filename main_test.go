@@ -73,26 +73,26 @@ func TestLongestCharSeq(t *testing.T) {
 	main.Generate("longest_char_sequence", fInputDsv)
 }
 
-func TestVulgarFrequency(t *testing.T) {
-	main.Generate("vulgar_frequency", fInputDsv)
+func TestWordsVulgarFrequency(t *testing.T) {
+	main.Generate("words_vulgar_frequency", fInputDsv)
 }
 
-func TestPronounFrequency(t *testing.T) {
-	main.Generate("pronoun_frequency", fInputDsv)
+func TestWordsPronounFrequency(t *testing.T) {
+	main.Generate("words_pronoun_frequency", fInputDsv)
 }
 
-func TestBiasFrequency(t *testing.T) {
-	main.Generate("bias_frequency", fInputDsv)
+func TestWordsBiasFrequency(t *testing.T) {
+	main.Generate("words_bias_frequency", fInputDsv)
 }
 
-func TestSexWordsFrequency(t *testing.T) {
-	main.Generate("sex_words_frequency", fInputDsv)
+func TestWordsSexFrequency(t *testing.T) {
+	main.Generate("words_sex_frequency", fInputDsv)
 }
 
-func TestBadWordsFrequency(t *testing.T) {
-	main.Generate("bad_words_frequency", fInputDsv)
+func TestWordsBadFrequency(t *testing.T) {
+	main.Generate("words_bad_frequency", fInputDsv)
 }
 
-func TestAllWordsFrequency(t *testing.T) {
-	main.Generate("all_words_frequency", fInputDsv)
+func TestWordsAllFrequency(t *testing.T) {
+	main.Generate("words_all_frequency", fInputDsv)
 }

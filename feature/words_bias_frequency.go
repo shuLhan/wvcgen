@@ -11,19 +11,19 @@ import (
 )
 
 /*
-BiasFrequency will count frequency of colloquial words with high bias in
+WordsBiasFrequency will count frequency of colloquial words with high bias in
 inserted text.
 */
-type BiasFrequency Feature
+type WordsBiasFrequency Feature
 
 func init() {
-	Register(&BiasFrequency{}, tabula.TReal, "bias_frequency")
+	Register(&WordsBiasFrequency{}, tabula.TReal, "words_bias_frequency")
 }
 
 /*
 Compute frequency of biased words.
 */
-func (ftr *BiasFrequency) Compute(dataset tabula.Dataset) {
+func (ftr *WordsBiasFrequency) Compute(dataset tabula.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
@@ -35,8 +35,8 @@ func (ftr *BiasFrequency) Compute(dataset tabula.Dataset) {
 
 		in := clean.WikiText(text)
 
-		freq := tekstus.StringFrequenciesOf(in, tekstus.BiasedWords,
-			false)
+		freq := tekstus.StringFrequenciesOf(in,
+			tekstus.BiasedWords, false)
 
 		ftr.PushBack(&tabula.Record{V: Round(freq)})
 	}

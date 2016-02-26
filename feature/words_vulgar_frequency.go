@@ -11,18 +11,19 @@ import (
 )
 
 /*
-VulgarFrequency will count frequency of vulgar words in inserted text.
+WordsVulgarFrequency will count frequency of vulgar words in inserted text.
 */
-type VulgarFrequency Feature
+type WordsVulgarFrequency Feature
 
 func init() {
-	Register(&VulgarFrequency{}, tabula.TReal, "vulgar_frequency")
+	Register(&WordsVulgarFrequency{}, tabula.TReal,
+		"words_vulgar_frequency")
 }
 
 /*
 Compute frequency vulgar words in inserted text.
 */
-func (ftr *VulgarFrequency) Compute(dataset tabula.Dataset) {
+func (ftr *WordsVulgarFrequency) Compute(dataset tabula.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {

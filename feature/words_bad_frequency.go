@@ -11,19 +11,19 @@ import (
 )
 
 /*
-BadWordsFrequency will compute frequency of bad words, colloquial words or
+WordsBadFrequency will compute frequency of bad words, colloquial words or
 bad writing skill words.
 */
-type BadWordsFrequency Feature
+type WordsBadFrequency Feature
 
 func init() {
-	Register(&BadWordsFrequency{}, tabula.TReal, "bad_words_frequency")
+	Register(&WordsBadFrequency{}, tabula.TReal, "words_bad_frequency")
 }
 
 /*
 Compute frequency of bad words.
 */
-func (ftr *BadWordsFrequency) Compute(dataset tabula.Dataset) {
+func (ftr *WordsBadFrequency) Compute(dataset tabula.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {

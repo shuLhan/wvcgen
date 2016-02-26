@@ -99,22 +99,22 @@
 		"Name"		: "longest_char_sequence"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "vulgar_frequency"
+		"Name"		: "words_vulgar_frequency"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "pronoun_frequency"
+		"Name"		: "words_pronoun_frequency"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "bias_frequency"
+		"Name"		: "words_bias_frequency"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "sex_words_frequency"
+		"Name"		: "words_sex_frequency"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "bad_words_frequency"
+		"Name"		: "words_bad_frequency"
 	,	"Separator"	: ","
 	},{
-		"Name"		: "all_words_frequency"
+		"Name"		: "words_all_frequency"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "class"

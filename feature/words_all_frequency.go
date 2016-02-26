@@ -11,28 +11,20 @@ import (
 )
 
 /*
-AllWordsFrequency compute vandalism, pronouns, bias, sex, and bad words in
+WordsAllFrequency compute vandalism, pronouns, bias, sex, and bad words in
 inserted text.
 */
-type AllWordsFrequency Feature
+type WordsAllFrequency Feature
 
 func init() {
-	Register(&AllWordsFrequency{}, tabula.TReal, "all_words_frequency")
+	Register(&WordsAllFrequency{}, tabula.TReal, "words_all_frequency")
 }
 
 /*
 Compute frequency of all words.
 */
-func (ftr *AllWordsFrequency) Compute(dataset tabula.Dataset) {
-	allWords := []string{}
-
-	allWords = append(allWords, tekstus.VulgarWords...)
-	allWords = append(allWords, tekstus.PronounWords...)
-	allWords = append(allWords, tekstus.BiasedWords...)
-	allWords = append(allWords, tekstus.SexWords...)
-	allWords = append(allWords, tekstus.BadWords...)
-
-	allWords = tekstus.WordsUniq(allWords, false)
+func (ftr *WordsAllFrequency) Compute(dataset tabula.Dataset) {
+	allWords := GetAllWordList()
 
 	col := dataset.GetColumnByName("additions")
 

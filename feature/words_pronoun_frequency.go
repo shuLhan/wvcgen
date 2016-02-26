@@ -11,23 +11,24 @@ import (
 )
 
 /*
-SexWordsFrequency will count frequency of non-vulgar, sex-related words.
+WordsPronounFrequency will count frequency of first and second person pronoun
+in inserted text.
 */
-type SexWordsFrequency Feature
+type WordsPronounFrequency Feature
 
 func init() {
-	Register(&SexWordsFrequency{}, tabula.TReal, "sex_words_frequency")
+	Register(&WordsPronounFrequency{}, tabula.TReal,
+		"words_pronoun_frequency")
 }
 
 /*
-Compute frequency of sex related words.
+Compute frequency of pronoun words in inserted text.
 */
-func (ftr *SexWordsFrequency) Compute(dataset tabula.Dataset) {
+func (ftr *WordsPronounFrequency) Compute(dataset tabula.Dataset) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
 		text := rec.String()
-
 		if len(text) == 0 {
 			ftr.PushBack(&tabula.Record{V: float64(0)})
 			continue
@@ -35,15 +36,8 @@ func (ftr *SexWordsFrequency) Compute(dataset tabula.Dataset) {
 
 		in := clean.WikiText(text)
 
-		if len(in) == 0 {
-			ftr.PushBack(&tabula.Record{V: float64(0)})
-			continue
-		}
-
-		inWords := tekstus.StringSplitWords(in, true, false)
-
-		freq := tekstus.WordsFrequenciesOf(inWords,
-			tekstus.SexWords, false)
+		freq := tekstus.StringFrequenciesOf(in,
+			tekstus.PronounWords, false)
 
 		ftr.PushBack(&tabula.Record{V: Round(freq)})
 	}

@@ -159,3 +159,48 @@ bad words in inserted text.
 
 * "class": convert the classification from text to numeric. The "regular" class
 will become 0 and the "vandalism" will become 1.
+
+## Extending The Feature
+
+The feature directory provide implementation of above features, where one can
+see how the feature works.
+One must familiar with Go language to work with it.
+
+There is also a template (named `template.go`) which can be copied to create a
+new feature.
+
+In this section we will see how to create new feature to compute the length of
+inserted text with feature name is `insert_length`.
+
+First, Copy `feature/template.go` to new name, for example
+`feature/insert_length.go`
+
+Create new type using `Feature` as base type,
+
+	type InsertLength Feature
+
+and then register it to global features list including feature value type and
+feature name that will be used later,
+
+	func init() {
+		Register(&InsertLength{}, tabula.TInteger, "insert_length")
+	}
+
+Create a function `Compute` using our InsertLength type with the first
+parameter is input dataset,
+
+	func (anon *Anonim) Compute(dataset tabula.Dataset) {
+		// computation algorithm.
+	}
+
+Test your feature by adding it to `main_test.go`,
+
+	func TestInsertLength(t *testing.T) {
+		main.Generate("insert_length", fInputDsv)
+	}
+
+and to test it, run with,
+
+	$ go test -v -run TestInsertLength -timeout 40m
+
+If its works as intended add it to `features.dsv`.

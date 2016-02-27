@@ -5,11 +5,13 @@
 package feature
 
 import (
-// import libraries for
+	// Import any libraries for working with dataset and computing the
+	// feature values.
+	"github.com/shuLhan/tabula"
 )
 
 // Template template to add new feature to this generator.
-type Anonim Feature
+type Template Feature
 
 func init() {
 	Register(&Template{}, tabula.TInteger, "template")
@@ -36,7 +38,7 @@ func (ftr *Template) Compute(dataset tabula.Dataset) {
 		// ...
 
 		// Set the feature value after processing
-		r.SetInteger(0)
+		r.SetValue(s, ftr.GetType())
 
 		// Save the record value
 		ftr.PushBack(r)

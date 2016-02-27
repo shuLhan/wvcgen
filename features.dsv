@@ -120,6 +120,9 @@
 		"Name"		: "words_sex_frequency"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "words_sex_impact"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "words_bad_frequency"
 	,	"Separator"	: ","
 	},{

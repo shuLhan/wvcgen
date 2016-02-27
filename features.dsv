@@ -108,6 +108,9 @@
 		"Name"		: "words_pronoun_frequency"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "words_pronoun_impact"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "words_bias_frequency"
 	,	"Separator"	: ","
 	},{

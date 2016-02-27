@@ -85,6 +85,10 @@ func TestWordsPronounFrequency(t *testing.T) {
 	main.Generate("words_pronoun_frequency", fInputDsv)
 }
 
+func TestWordsPronounImpact(t *testing.T) {
+	main.Generate("words_pronoun_impact", fInputDsv)
+}
+
 func TestWordsBiasFrequency(t *testing.T) {
 	main.Generate("words_bias_frequency", fInputDsv)
 }

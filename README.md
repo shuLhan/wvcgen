@@ -15,14 +15,20 @@ The generator is written using [Go lang](https://golang.org).
 
 ### Installation
 
-* Install Go
+* [Install Go](https://golang.org/doc/install) from binary distribution or
+  using your OS package management.
 * Download this package,
 
-	$ go get github.com/shuLhan/wvcgen
+  ```
+  $ go get github.com/shuLhan/wvcgen
+  ```
 
 ### PAN-WVC-2010
 
-* Download the full dataset from [uni-weimar.de site](http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-wvc-10/pan-wikipedia-vandalism-corpus-2010.zip)
+* Change working directory to this package (located in
+  `$GOPATH/src/github.com/shuLhan/wvcgen)`
+* Download the full dataset from [uni-weimar.de
+  site](http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-wvc-10/pan-wikipedia-vandalism-corpus-2010.zip)
 * Extract the zip file
 * Rename the extracted directory from `pan-wikipedia-vandalism-corpus-2010` to
   `pan-wvc-2010`
@@ -31,7 +37,7 @@ The generator is written using [Go lang](https://golang.org).
 
 #### Creating Unified Dataset
 
-* Go to directory `cmd/merge-wvc2010`
+* Change working directory to `cmd/merge-wvc2010`
 * Run `main.go` script to merge and create new dataset
   ```
   $ go run main.go
@@ -39,7 +45,7 @@ The generator is written using [Go lang](https://golang.org).
 
   which will create file `merge_edits_golds.dat` that combine file
   `pan-wvc-2010/edits.csv` with `pan-wvc-2010/gold-annotations.csv` and add
-  two new fields. List of files in unified dataset are,
+  two new fields. List of attributes in unified dataset are,
 
   * editid
   * class
@@ -53,14 +59,19 @@ The generator is written using [Go lang](https://golang.org).
   * additions
 
 The new fields are `deletions` and `additions` which contain diff of old
-revision with new revision at words level.
+revision with new revision at words level. Attribute `deletions` contain
+deleted text in old revision, and attribute `additions` contain inserted text
+in new revision.
 
 One can customize the output of dataset by editing the `merge_edits_gold.dsv`
 configuration and run the merge script again.
 
 #### Cleaning Wiki Revisions
 
-* Go to directory `cmd/wikiclean`
+Cleaning wiki text revision, which is located in `revisions` directory, is
+required to speeding up processing features.
+
+* Change working directory to `cmd/wikiclean`
 * Create directory where the output of cleaning will be located,
   ```
   $ mkdir -p ../../pan-wvc-2010/revisions_clean
@@ -84,12 +95,13 @@ vandalism features by runnning `main.go` script in root of repository.
 Feature values will be written to file `features.dat`.
 
 One can customize the input and which features should be computed by editing
-file `features.dsv`,
-* `Input` key point to the input file,
+file `features.dsv`, which contains,
+* `Input` option point to the input file (the unified data set)
 * `InputMetadata` contains fields in input file,
-* `Output` key point the file where result of features computation will be
+* `Output` option point the file where result of features computation will be
   written,
-* `OutputMetadata` contain list of features that will computed.
+* `OutputMetadata` contain list of features that will computed. The name for
+  feature is described below.
 
 ## List of Features
 

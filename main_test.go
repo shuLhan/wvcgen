@@ -93,6 +93,10 @@ func TestWordsBiasFrequency(t *testing.T) {
 	main.Generate("words_bias_frequency", fInputDsv)
 }
 
+func TestWordsBiasImpact(t *testing.T) {
+	main.Generate("words_bias_impact", fInputDsv)
+}
+
 func TestWordsSexFrequency(t *testing.T) {
 	main.Generate("words_sex_frequency", fInputDsv)
 }

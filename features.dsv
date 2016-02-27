@@ -114,6 +114,9 @@
 		"Name"		: "words_bias_frequency"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "words_bias_impact"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "words_sex_frequency"
 	,	"Separator"	: ","
 	},{

@@ -132,6 +132,9 @@
 		"Name"		: "words_all_frequency"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "words_all_impact"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "class"
 	}]
 }

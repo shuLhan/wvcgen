@@ -116,3 +116,7 @@ func TestWordsBadImpact(t *testing.T) {
 func TestWordsAllFrequency(t *testing.T) {
 	main.Generate("words_all_frequency", fInputDsv)
 }
+
+func TestWordsAllImpact(t *testing.T) {
+	main.Generate("words_all_impact", fInputDsv)
+}

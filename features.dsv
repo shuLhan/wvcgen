@@ -126,6 +126,9 @@
 		"Name"		: "words_bad_frequency"
 	,	"Separator"	: ","
 	},{
+		"Name"		: "words_bad_impact"
+	,	"Separator"	: ","
+	},{
 		"Name"		: "words_all_frequency"
 	,	"Separator"	: ","
 	},{

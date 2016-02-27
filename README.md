@@ -116,18 +116,23 @@ text.
 ### Language
 
 * "words_vulgar_frequency" compute frequency of vulgar words in inserted text.
-* "words_vulgar_impact" compute increased of vulgar words in inserted text.
+* "words_vulgar_impact" compute increased of vulgar words in new revision.
 * "words_pronoun_frequency" compute frequency of colloquial and slang pronoun
   in inserted text.
-* "words_pronoun_impact" compute increased of vulgar words in inserted text.
+* "words_pronoun_impact" compute increased of pronoun words in new revision.
 * "words_bias_frequency" compute frequency of colloquial words with high bias
-in inserted text.
-* "words_sex_frequency" compute frequency of sex-related, non-vulgar words
-in inserted text.
+  in inserted text.
+* "words_bias_impact" compute increased of biased words in new revision.
+* "words_sex_frequency" compute frequency of sex-related, non-vulgar words in
+  inserted text.
+* "words_sex_impact" compute increased of sex-related words in new revision.
 * "words_bad_frequency" compute frequency of bad words, colloquial words or
 bad writing words.
+* "words_bad_impact" compute increased of bad words in new revision.
 * "words_all_frequency" compute frequency of vulgar, pronoun, bias, sex, and
 bad words in inserted text.
+* "words_all_impact" compute the increased of vulgar, pronoun, bias, sex, and
+  bad words in new revision.
 
 ### Misc
 

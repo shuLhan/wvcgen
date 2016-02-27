@@ -1,5 +1,5 @@
 {
-	"Input"		: "merge/wvc2010/merge_edits_gold.dat"
+	"Input"		: "cmd/merge-wvc2010/merge_edits_gold.dat"
 ,	"MaxRows"	: -1
 ,	"InputMetadata"	: [{
 		"Name"		: "editid"

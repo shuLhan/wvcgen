@@ -13,6 +13,13 @@ The generator is written using [Go lang](https://golang.org).
 
 ## How To Use
 
+### Installation
+
+* Install Go
+* Download this package,
+
+	$ go get github.com/shuLhan/wvcgen
+
 ### PAN-WVC-2010
 
 * Download the full dataset from [uni-weimar.de site](http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-wvc-10/pan-wikipedia-vandalism-corpus-2010.zip)
@@ -24,7 +31,7 @@ The generator is written using [Go lang](https://golang.org).
 
 #### Creating Unified Dataset
 
-* Go to directory `merge/wvc2010`
+* Go to directory `cmd/merge-wvc2010`
 * Run `main.go` script to merge and create new dataset
   ```
   $ go run main.go
@@ -64,8 +71,8 @@ configuration and run the merge script again.
   ```
 
   The first parameter is the input location where the revision text to be
-  cleaning up located, the second parameter is location where new revision
-  that has been cleaned up will be written.
+  cleaning up, the second parameter is location where new revision that has
+  been cleaned up will be written.
 
 #### Generating Features
 
@@ -85,6 +92,8 @@ file `features.dsv`,
 * `OutputMetadata` contain list of features that will computed.
 
 ## List of Features
+
+Feature implementation is located in directory `feature`.
 
 ### Metadata
 

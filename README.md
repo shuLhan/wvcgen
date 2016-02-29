@@ -3,13 +3,29 @@
 
 # wvcgen
 
-This is Wikipedia vandalism dataset generator.
+This is Wikipedia vandalism dataset generator and library for working with it.
+
+## Overview
 
 This repository does not provide the full Wikipedia vandalism dataset provided
 by uni-weimar.de but provide the script to work with dataset, for example
-diff-ing revision, creating new dataset from it, and computing the features.
+diff-ing old and new revisions, creating new dataset, and computing the
+features.
 
-The generator is written using [Go lang](https://golang.org).
+For anyone who know Wikipedia Vandalism Corpus, the original dataset only
+contain the classification but does not provide the feature values (one must
+create one to work with it, like this repository do).
+
+This program contain implementation of features from the original Mola-Velasco
+work [1], including 4 metadata features, 11 text features, and 12 language
+features.
+
+I hope this can speeding up research on Wikipedia vandalism in the future.
+
+If you have any question or problem with the program, ask or report it in the
+issue page.
+
+This project is written using [Go lang](https://golang.org).
 
 ## How To Use
 
@@ -107,6 +123,8 @@ file `features.dsv`, which contains,
 
 Feature implementation is located in directory `feature`.
 
+List of features is implemented from paper by Mola-Velasco (2010) [1].
+
 ### Metadata
 
 * "anonim": give a value '1' if an editor is anonymous or '0' otherwise.
@@ -189,8 +207,9 @@ feature name that will be used later,
 Create a function `Compute` using our InsertLength type with the first
 parameter is input dataset,
 
-	func (anon *Anonim) Compute(dataset tabula.Dataset) {
-		// computation algorithm.
+	func (ftr *InsertLength) Compute(dataset tabula.Dataset) {
+		// Compute the feature value. See other features on how to get
+		// input records and iterate on them.
 	}
 
 Test your feature by adding it to `main_test.go`,
@@ -204,3 +223,9 @@ and to test it, run with,
 	$ go test -v -run TestInsertLength -timeout 40m
 
 If its works as intended add it to `features.dsv`.
+
+## References
+
+[1] M. Mola-Velasco, "Wikipedia vandalism detection through machine learn-
+ing: Feature review and new proposals: Lab report for pan at clef 2010," ArXiv
+preprint arXiv:1210.5560, 2012.

@@ -5,6 +5,7 @@
 package main
 
 import (
+	"flag"
 	"fmt"
 	"github.com/shuLhan/dsv"
 	"github.com/shuLhan/tabula"
@@ -14,8 +15,8 @@ import (
 	"io"
 )
 
-const (
-	fInputDsv = "features.dsv"
+var (
+	fInputDsv = "wvc2010_features.dsv"
 )
 
 /*
@@ -151,5 +152,13 @@ func Generate(featureName, finput string) {
 }
 
 func main() {
+	flag.Parse()
+
+	if len(flag.Args()) >= 2 {
+		fInputDsv = flag.Arg(2)
+	}
+
+	fmt.Println(">>> Processing", fInputDsv)
+
 	Generate("", fInputDsv)
 }

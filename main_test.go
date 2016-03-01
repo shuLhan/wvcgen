@@ -5,12 +5,15 @@
 package main_test
 
 import (
+	"flag"
+	"fmt"
 	"github.com/shuLhan/wvcgen"
+	"os"
 	"testing"
 )
 
-const (
-	fInputDsv = "features_test.dsv"
+var (
+	fInputDsv = "wvc2010_features_test.dsv"
 )
 
 func TestAnonim(t *testing.T) {
@@ -119,4 +122,16 @@ func TestWordsAllFrequency(t *testing.T) {
 
 func TestWordsAllImpact(t *testing.T) {
 	main.Generate("words_all_impact", fInputDsv)
+}
+
+func TestMain(m *testing.M) {
+	flag.Parse()
+
+	if len(flag.Args()) >= 2 {
+		fInputDsv = flag.Arg(1)
+	}
+
+	fmt.Println(">>> Processing", fInputDsv)
+
+	os.Exit(m.Run())
 }

@@ -106,12 +106,12 @@ required to speeding up processing features.
 After one of PAN WVC dataset has been merged and cleaned up one can compute the
 vandalism features by runnning `main.go` script in root of repository.
 
-    $ go run main.go
+    $ go run main.go wvc2010_features.dsv
 
-Feature values will be written to file `features.dat`.
+Generated feature values will be written to file `wvc2010_features.dat`.
 
 One can customize the input and which features should be computed by editing
-file `features.dsv`, which contains,
+file `wvc2010_features.dsv`, which contains,
 * `Input` option point to the input file (the unified data set)
 * `InputMetadata` contains fields in input file,
 * `Output` option point the file where result of features computation will be
@@ -220,9 +220,10 @@ Test your feature by adding it to `main_test.go`,
 
 and to test it, run with,
 
-	$ go test -v -run TestInsertLength -timeout 40m
+	$ go test -v -run TestInsertLength -timeout 40m main_test.go -args wvc2010_features_test.dsv
 
-If its works as intended add it to `features.dsv`.
+If its works as intended add it to `wvc2010_features.dsv` or your own feature
+file.
 
 ## References
 

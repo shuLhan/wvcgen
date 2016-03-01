@@ -49,7 +49,8 @@
 
 ,	"RevisionDir"		: "pan-wvc-2010/revisions"
 ,	"RevisionCleanDir"	: "pan-wvc-2010/revisions_clean"
-,	"Output"	: "features.dat"
+,	"Output"		: "wvc2010_features.dat"
+,	"Rejected"		: "wvc2010_features.rejected"
 ,	"OutputMetadata": [{
 		"Name"		: "editid"
 	,	"Separator"	: ","

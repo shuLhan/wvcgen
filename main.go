@@ -128,7 +128,7 @@ func Generate(featureName, finput string) {
 
 		ftrValues = computeFeatures(reader, writer)
 
-		_, ewrite := writer.WriteColumns(&ftrValues.Columns, nil)
+		_, ewrite := writer.WriteColumns(ftrValues.Columns, nil)
 
 		if ewrite != nil {
 			panic(e)

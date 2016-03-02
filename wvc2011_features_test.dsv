@@ -1,0 +1,61 @@
+{
+	"Input"		: "cmd/unified-wvc2011/unified-wvc2011.dat"
+,	"DatasetMode"	: "COLUMNS"
+,	"MaxRows"	: -1
+,	"InputMetadata"	: [{
+		"Name"		: "editid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "class"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "oldrevisionid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "newrevisionid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "edittime"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "editor"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "articletitle"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "editcomment"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "deletions"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	,	"Separator"	: ","
+	},{
+		"Name"		: "additions"
+	,	"LeftQuote"	: "\""
+	,	"RightQuote"	: "\""
+	}]
+
+,	"RevisionDir"		: "pan-wvc-2011/revisions"
+,	"RevisionCleanDir"	: "pan-wvc-2011/revisions_clean"
+,	"Output"		: "wvc2011_features_test.dat"
+,	"Rejected"		: "wvc2011_features_test.rejected"
+,	"OutputMetadata": [{
+		"Name"		: "editid"
+	,	"Separator"	: ","
+	},{
+		"Name"		: "class"
+	,	"Separator"	: ","
+	}]
+}

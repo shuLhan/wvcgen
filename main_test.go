@@ -127,8 +127,8 @@ func TestWordsAllImpact(t *testing.T) {
 func TestMain(m *testing.M) {
 	flag.Parse()
 
-	if len(flag.Args()) >= 2 {
-		fInputDsv = flag.Arg(1)
+	if len(flag.Args()) >= 1 {
+		fInputDsv = flag.Arg(0)
 	}
 
 	fmt.Println(">>> Processing", fInputDsv)

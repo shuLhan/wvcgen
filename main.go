@@ -154,8 +154,8 @@ func Generate(featureName, finput string) {
 func main() {
 	flag.Parse()
 
-	if len(flag.Args()) >= 2 {
-		fInputDsv = flag.Arg(2)
+	if len(flag.Args()) >= 1 {
+		fInputDsv = flag.Arg(0)
 	}
 
 	fmt.Println(">>> Processing", fInputDsv)

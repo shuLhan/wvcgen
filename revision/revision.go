@@ -10,6 +10,8 @@ package revision
 
 import (
 	"errors"
+	"github.com/shuLhan/tabula"
+	"github.com/shuLhan/tekstus/diff"
 	"io/ioutil"
 	"os"
 )
@@ -82,4 +84,64 @@ func GetSize(id string) int64 {
 	}
 
 	return finfo.Size()
+}
+
+/*
+Diff given two list of old and new revision id, compare each of them and save
+their diff (deletions and additions as single string joined by " ") on dataset.
+
+The revision text will be looked up in directory `Dir` and with extension
+".txt".
+*/
+func Diff(oldids, newids []string, ext string) (
+	tabula.DatasetInterface,
+	error,
+) {
+	diffset := &tabula.Dataset{
+		Mode: tabula.DatasetModeColumns,
+	}
+
+	colAdds := tabula.NewColumn(tabula.TString, "additions")
+	colDels := tabula.NewColumn(tabula.TString, "deletions")
+
+	// Get minimum length
+	minlen := len(oldids)
+	newlen := len(newids)
+	if newlen < minlen {
+		minlen = newlen
+	}
+
+	for x := 0; x < minlen; x++ {
+		oldrevid := Dir + "/" + oldids[x] + ext
+		newrevid := Dir + "/" + newids[x] + ext
+
+		diffs, e := diff.Files(oldrevid, newrevid, diff.LevelWords)
+		if e != nil {
+			return nil, e
+		}
+
+		dels := diffs.GetAllDels()
+		delstr := dels.Join(" ")
+		delrec, e := tabula.NewRecord(delstr, tabula.TString)
+
+		if e != nil {
+			return nil, e
+		}
+
+		adds := diffs.GetAllAdds()
+		addstr := adds.Join(" ")
+		addrec, e := tabula.NewRecord(addstr, tabula.TString)
+
+		if e != nil {
+			return nil, e
+		}
+
+		colDels.PushBack(delrec)
+		colAdds.PushBack(addrec)
+	}
+
+	diffset.PushColumn(*colDels)
+	diffset.PushColumn(*colAdds)
+
+	return diffset, nil
 }

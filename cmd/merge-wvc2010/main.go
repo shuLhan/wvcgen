@@ -7,8 +7,9 @@ package main
 import (
 	"fmt"
 	"github.com/shuLhan/dsv"
-	"github.com/shuLhan/tabula"
-	"github.com/shuLhan/tekstus/diff"
+	"github.com/shuLhan/wvcgen/revision"
+	"log"
+	"time"
 )
 
 const (
@@ -18,6 +19,16 @@ const (
 	dRevisions          = "../../pan-wvc-2010/revisions/"
 )
 
+func trace(s string) (string, time.Time) {
+	log.Println("START:", s)
+	return s, time.Now()
+}
+
+func un(s string, startTime time.Time) {
+	endTime := time.Now()
+	log.Println("  END: ", endTime.Sub(startTime))
+}
+
 /*
 doDiff read old and new revisions from edit and compare both of them to get
 deletions in old rev and additions in new rev.
@@ -25,62 +36,32 @@ deletions in old rev and additions in new rev.
 Deletions and additions then combined into one string and appended to dataset.
 */
 func doDiff(readset dsv.ReaderInterface) {
-	diffset, e := dsv.NewReader("")
+	ds := readset.GetDataset()
+	ds.TransposeToColumns()
 
+	oldids := ds.GetColumnByName("oldrevisionid").ToStringSlice()
+	newids := ds.GetColumnByName("newrevisionid").ToStringSlice()
+
+	revision.SetDir(dRevisions)
+
+	diffset, e := revision.Diff(oldids, newids, ".txt")
 	if e != nil {
 		panic(e)
 	}
 
-	e = diffset.SetDatasetMode(dsv.DatasetModeROWS)
-
-	if e != nil {
-		panic(e)
-	}
-
+	// Create input metadata for diff
 	md := dsv.NewMetadata("deletions", "string", ",", "\"", "\"", nil)
-	diffset.AddInputMetadata(md)
+	readset.AddInputMetadata(md)
 
 	md = dsv.NewMetadata("additions", "string", ",", "\"", "\"", nil)
-	diffset.AddInputMetadata(md)
+	readset.AddInputMetadata(md)
 
-	for _, row := range readset.GetDataset().GetDataAsRows() {
-		oldrevid := dRevisions + row[2].String() + ".txt"
-		newrevid := dRevisions + row[3].String() + ".txt"
-
-		diffs, e := diff.Files(oldrevid, newrevid, diff.LevelWords)
-
-		if e != nil {
-			panic(e)
-		}
-
-		dels := diffs.GetAllDels()
-		delstr := dels.Join(" ")
-		delrec, e := tabula.NewRecord(delstr, tabula.TString)
-
-		if e != nil {
-			panic(e)
-		}
-
-		adds := diffs.GetAllAdds()
-		addstr := adds.Join(" ")
-		addrec, e := tabula.NewRecord(addstr, tabula.TString)
-
-		if e != nil {
-			panic(e)
-		}
-
-		diffrow := tabula.Row{}
-
-		diffrow.PushBack(delrec)
-		diffrow.PushBack(addrec)
-
-		diffset.PushRow(diffrow)
-	}
-
-	readset.MergeColumns(diffset)
+	ds.MergeColumns(diffset)
 }
 
 func main() {
+	defer un(trace("Merge and Diff PAN-WVC-2010"))
+
 	readset, e := dsv.SimpleMerge(fEditsDsv, fGoldAnnotationsDsv)
 	if e != nil {
 		panic(e)
@@ -91,13 +72,9 @@ func main() {
 	doDiff(readset)
 
 	fmt.Println(">>> writing ...")
-	e = dsv.SimpleWrite(readset, fOutDsv)
-
+	n, e := dsv.SimpleWrite(readset, fOutDsv)
 	if e != nil {
 		panic(e)
 	}
-
 	fmt.Printf(">>> writing %d rows\n", n)
-err:
-	_ = writer.Close()
 }

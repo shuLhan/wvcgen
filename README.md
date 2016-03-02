@@ -5,6 +5,27 @@
 
 This is Wikipedia vandalism dataset generator and library for working with it.
 
+* [Overview](#overview)
+* [How To Use](#how-to-use)
+  * [Installation](#installation)
+  * [PAN-WVC-2010](#pan-wvc-2010)
+    * [Creating Unified Dataset](#creating-unified-dataset)
+    * [Cleaning Wiki Revisions](#cleaning-wiki-revisions)
+    * [Generating Features](#generating-features)
+  * [PAN-WVC-2011](#pan-wvc-2011)
+    * [Creating Unified Dataset WVC-2011](#creating-unified-dataset-wvc-2011)
+    * [Cleaning WVC-2011 Revisions](#cleaning-wvc-2011-revisions)
+    * [Generating WVC-2011 Features](#generating-wvc-2011-features)
+* [List of Features](#list-of-features)
+  * [Metadata](#metadata)
+  * [Text](#text)
+  * [Language](#language)
+  * [Misc](#misc)
+* [Extending The Feature](#extending-the-feature)
+* [References](#references)
+
+---
+
 ## Overview
 
 This repository does not provide the full Wikipedia vandalism dataset provided
@@ -43,23 +64,44 @@ This project is written using [Go lang](https://golang.org).
 
 * Change working directory to this package (located in
   `$GOPATH/src/github.com/shuLhan/wvcgen)`
+  ```
+  $ cd $GOPATH/src/github.com/shuLhan/wvcgen
+  ```
+
 * Download the full dataset from [uni-weimar.de
   site](http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-wvc-10/pan-wikipedia-vandalism-corpus-2010.zip)
+  ```
+  $ wget http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-wvc-10/pan-wikipedia-vandalism-corpus-2010.zip
+  ```
+
 * Extract the zip file
+  ```
+  $ unzip pan-wikipedia-vandalism-corpus-2010.zip
+  ```
+
 * Rename the extracted directory from `pan-wikipedia-vandalism-corpus-2010` to
   `pan-wvc-2010`
+  ```
+  $ mv pan-wikipedia-vandalism-corpus-2010 pan-wvc-2010
+  ```
+
 * Move all files in `pan-wvc-2010/article-revisions/partXX/` to
   `pan-wvc-2010/revisions`
+  ```
+  $ cd pan-wvc-2010
+  $ mkdir -p revisions
+  $ find article-revisions -name "*.txt" -exec mv '{}' revisions/ \;
+  ```
 
 #### Creating Unified Dataset
 
-* Change working directory to `cmd/merge-wvc2010`
+* Change working directory to `cmd/unified-wvc2010`
 * Run `main.go` script to merge and create new dataset
   ```
   $ go run main.go
   ```
 
-  which will create file `merge_edits_golds.dat` that combine file
+  which will create file `unified-wvc2010.dat` that combine file
   `pan-wvc-2010/edits.csv` with `pan-wvc-2010/gold-annotations.csv` and add
   two new fields. List of attributes in unified dataset are,
 
@@ -79,7 +121,7 @@ revision with new revision at words level. Attribute `deletions` contain
 deleted text in old revision, and attribute `additions` contain inserted text
 in new revision.
 
-One can customize the output of dataset by editing the `merge_edits_gold.dsv`
+One can customize the output of dataset by editing the `unified-wvc2010.dsv`
 configuration and run the merge script again.
 
 #### Cleaning Wiki Revisions
@@ -118,6 +160,80 @@ file `wvc2010_features.dsv`, which contains,
   written,
 * `OutputMetadata` contain list of features that will computed. The name for
   feature is described below.
+
+### PAN-WVC-2011
+
+* Download the full dataset from [uni-weimar.de
+  site](http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-wvc-11/pan-wikipedia-vandalism-corpus-2011.zip)
+  ```
+  $ wget http://www.uni-weimar.de/medien/webis/corpora/corpus-pan-wvc-11/pan-wikipedia-vandalism-corpus-2011.zip
+  ```
+
+* Extract the zip file
+  ```
+  $ unzip pan-wikipedia-vandalism-corpus-2011.zip
+  ```
+
+* Rename the extracted directory from `pan-wikipedia-vandalism-corpus-2011` to
+  `pan-wvc-2011`
+  ```
+  $ mv pan-wikipedia-vandalism-corpus-2011 pan-wvc-2011
+  ```
+
+* Create unified directory for English revisions
+  ```
+  $ mkdir -p pan-wvc-2011/revisions
+  ```
+
+* Move all files in `pan-wvc-2011/article-revisions-en/partXX/` to
+  `pan-wvc-2011/revisions`. For example, using `find` tool on Linux,
+  ```
+  $ cd pan-wvc-2011
+  $ find article-revisions-en -name "*.txt" -exec mv '{}' revisions/ \;
+  ```
+
+#### Creating Unified Dataset WVC-2011
+
+* Change working directory to `cmd/unified-wvc2011`
+
+* Run `main.go` script to merge and create new dataset
+  ```
+  $ go run main.go
+  ```
+
+The unified dataset will contain new two fields `additions` and `deletions`,
+which is the diff of old revision with new revision.
+
+#### Cleaning WVC-2011 Revisions 
+
+Cleaning wiki text revision, which is located in `revisions` directory, is
+required to speeding up processing features.
+
+* Create directory where the output of cleaning will be located,
+  ```
+  $ mkdir -p pan-wvc-2011/revisions_clean
+  ```
+
+* Change working directory to `cmd/wikiclean`
+
+* Run `main.go` script to clean revisions file
+  ```
+  $ go run main.go ../../pan-wvc-2011/revisions ../../pan-wvc-2011/revisions_clean
+  ```
+
+  The first parameter is the input location where the revision text to be
+  cleaning up, the second parameter is location where new revision that has
+  been cleaned up will be written.
+
+#### Generating WVC-2011 Features
+
+After one of PAN WVC dataset has been merged and cleaned up one can compute the
+vandalism features by runnning `main.go` script in root of repository.
+
+    $ go run main.go wvc2011_features.dsv
+
+Generated feature values will be written to file `wvc2011_features.dat`.
+
 
 ## List of Features
 

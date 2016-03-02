@@ -1,7 +1,7 @@
 {
-	"Input"	: "merge_edits_gold.dat"
-,	"DatasetMode": "ROWS"
-,	"InputMetadata": [{
+	"Input"		: "unified-wvc2010.dat"
+,	"MaxRows"	: -1
+,	"InputMetadata"	: [{
 		"Name"		: "editid"
 	,	"Separator"	: ","
 	},{
@@ -46,7 +46,7 @@
 	,	"RightQuote"	: "\""
 	}]
 
-,	"Output"	: "merge_edits_gold_test.dat"
+,	"Output"	: "unified-wvc2010.dat"
 ,	"OutputMetadata": [{
 		"Name"		: "editid"
 	,	"Separator"	: ","

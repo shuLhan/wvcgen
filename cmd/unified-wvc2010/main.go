@@ -15,7 +15,7 @@ import (
 const (
 	fEditsDsv           = "edits.dsv"
 	fGoldAnnotationsDsv = "gold-annotations.dsv"
-	fOutDsv             = "merge_edits_gold.dsv"
+	fOutDsv             = "unified-wvc2010.dsv"
 	dRevisions          = "../../pan-wvc-2010/revisions/"
 )
 
@@ -60,7 +60,7 @@ func doDiff(readset dsv.ReaderInterface) {
 }
 
 func main() {
-	defer un(trace("Merge and Diff PAN-WVC-2010"))
+	defer un(trace("Unified PAN-WVC-2010"))
 
 	readset, e := dsv.SimpleMerge(fEditsDsv, fGoldAnnotationsDsv)
 	if e != nil {

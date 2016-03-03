@@ -5,7 +5,7 @@
 package feature
 
 import (
-	"fmt"
+	"github.com/golang/glog"
 	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 	"github.com/shuLhan/wvcgen/clean"
@@ -42,7 +42,7 @@ func (ftr *TermFrequency) Compute(dataset tabula.Dataset) {
 
 		// Get content of new revision.
 		revid := newrevidx.Records[x].String()
-		fmt.Printf(">>> term_frequency: %d/%d processing %q\n", x,
+		glog.V(2).Infof(">>> term_frequency: %d/%d processing %q\n", x,
 			recordslen, revid)
 
 		newtext, e := revision.GetContentClean(revid)

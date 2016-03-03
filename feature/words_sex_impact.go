@@ -5,7 +5,7 @@
 package feature
 
 import (
-	"fmt"
+	"github.com/golang/glog"
 	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 )
@@ -39,7 +39,7 @@ func (ftr *WordsSexImpact) Compute(dataset tabula.Dataset) {
 
 		v.SetFloat(Round(freq))
 
-		fmt.Printf(">>> words_sex_impact: %d/%d freq: %f\n",
+		glog.V(2).Infof(">>> words_sex_impact: %d/%d freq: %f\n",
 			x, oldrevslen, freq)
 
 		ftr.PushBack(&v)

@@ -10,19 +10,30 @@ import (
 	"github.com/shuLhan/dsv"
 	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/wvcgen/feature"
-	wvcreader "github.com/shuLhan/wvcgen/reader"
+	wvcgen "github.com/shuLhan/wvcgen/reader"
 	"github.com/shuLhan/wvcgen/revision"
 	"io"
+	"time"
 )
 
 var (
 	fInputDsv = "wvc2010_features.dsv"
 )
 
+func trace(s string) (string, time.Time) {
+	fmt.Println("START:", s)
+	return s, time.Now()
+}
+
+func un(s string, startTime time.Time) {
+	endTime := time.Now()
+	fmt.Println("  END:", s, "with elapsed time", endTime.Sub(startTime))
+}
+
 /*
 initReader set configuration of generator.
 */
-func initReader(reader *wvcreader.Reader) {
+func initReader(reader *wvcgen.Reader) {
 	revision.SetDir(reader.RevisionDir)
 	revision.SetCleanDir(reader.RevisionCleanDir)
 }
@@ -30,9 +41,9 @@ func initReader(reader *wvcreader.Reader) {
 /*
 InitReadWriter initialize reader and writer.
 */
-func InitReadWriter(finput string) (reader *wvcreader.Reader,
+func InitReadWriter(finput string) (reader *wvcgen.Reader,
 	writer *dsv.Writer) {
-	reader, e := wvcreader.NewReader(finput)
+	reader, e := wvcgen.NewReader(finput)
 
 	if e != nil {
 		panic(e)
@@ -49,10 +60,31 @@ func InitReadWriter(finput string) (reader *wvcreader.Reader,
 	return reader, writer
 }
 
+func runFeature(reader *wvcgen.Reader, ftrValues *tabula.Dataset,
+	md dsv.Metadata,
+) {
+	defer un(trace(">>> computing feature " + md.Name))
+
+	ftr := feature.GetByName(md.Name)
+
+	// No feature name found, search the column name in
+	// input metadata.
+	if ftr == nil {
+		getAsInputColumn(reader, md.Name, ftrValues)
+		return
+	}
+
+	ftr.Compute(reader.Dataset)
+
+	col := ftr.Interface().(*tabula.Column)
+
+	ftrValues.PushColumn(*col)
+}
+
 /*
 computeFeatures will compute each feature listed in writer output metadata.
 */
-func computeFeatures(reader *wvcreader.Reader, writer *dsv.Writer) (
+func computeFeatures(reader *wvcgen.Reader, writer *dsv.Writer) (
 	ftrValues *tabula.Dataset,
 ) {
 	ftrValues = &tabula.Dataset{}
@@ -60,22 +92,7 @@ func computeFeatures(reader *wvcreader.Reader, writer *dsv.Writer) (
 	ftrValues.Init(tabula.DatasetModeColumns, nil, nil)
 
 	for _, md := range writer.OutputMetadata {
-		fmt.Println(">>> computing feature", md.Name)
-
-		ftr := feature.GetByName(md.Name)
-
-		// No feature name found, search the column name in
-		// input metadata.
-		if ftr == nil {
-			getAsInputColumn(reader, md.Name, ftrValues)
-			continue
-		}
-
-		ftr.Compute(reader.Dataset)
-
-		col := ftr.Interface().(*tabula.Column)
-
-		ftrValues.PushColumn(*col)
+		runFeature(reader, ftrValues, md)
 	}
 
 	return
@@ -84,7 +101,7 @@ func computeFeatures(reader *wvcreader.Reader, writer *dsv.Writer) (
 /*
 getAsInputColumn return feature values as in input column.
 */
-func getAsInputColumn(reader *wvcreader.Reader, colName string,
+func getAsInputColumn(reader *wvcgen.Reader, colName string,
 	ftrValues *tabula.Dataset,
 ) {
 	ftr := reader.GetColumnByName(colName)
@@ -158,7 +175,7 @@ func main() {
 		fInputDsv = flag.Arg(0)
 	}
 
-	fmt.Println(">>> Processing", fInputDsv)
+	defer un(trace(">>> Processing " + fInputDsv))
 
 	Generate("", fInputDsv)
 }

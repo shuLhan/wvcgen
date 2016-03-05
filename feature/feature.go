@@ -11,6 +11,13 @@ package feature
 import (
 	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
+	"os"
+	"strconv"
+)
+
+var (
+	// DEBUG level, set using environment FEATURE_DEBUG
+	DEBUG = 0
 )
 
 /*
@@ -18,6 +25,15 @@ Feature define type that hold the feature name and values.
 */
 type Feature struct {
 	tabula.Column
+}
+
+func init() {
+	v := os.Getenv("FEATURE_DEBUG")
+	if v == "" {
+		DEBUG = 0
+	} else {
+		DEBUG, _ = strconv.Atoi(v)
+	}
 }
 
 /*

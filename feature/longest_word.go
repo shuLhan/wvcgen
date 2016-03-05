@@ -5,7 +5,7 @@
 package feature
 
 import (
-	"github.com/golang/glog"
+	"fmt"
 	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 	"github.com/shuLhan/wvcgen/clean"
@@ -38,8 +38,10 @@ func (ftr *LongestWord) Compute(dataset tabula.Dataset) {
 		inWords := tekstus.StringSplitWords(text, true, true)
 		slong, _ := tekstus.WordsFindLongest(inWords)
 
-		glog.V(2).Infof(">>> %d/%d longest word: %q\n", x, addslen,
-			slong)
+		if DEBUG >= 2 {
+			fmt.Printf("[feature] %d/%d longest word: %q\n", x, addslen,
+				slong)
+		}
 
 		slonglen := int64(len(slong))
 

@@ -5,7 +5,7 @@
 package feature
 
 import (
-	"github.com/golang/glog"
+	"fmt"
 	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/tekstus"
 )
@@ -39,8 +39,10 @@ func (ftr *WordsBadImpact) Compute(dataset tabula.Dataset) {
 
 		v.SetFloat(Round(freq))
 
-		glog.V(2).Infof(">>> words_bad_impact: %d/%d freq: %f\n",
-			x, oldrevslen, freq)
+		if DEBUG >= 2 {
+			fmt.Printf("[feature] words_bad_impact: %d/%d freq: %f\n",
+				x, oldrevslen, freq)
+		}
 
 		ftr.PushBack(&v)
 	}

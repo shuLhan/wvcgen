@@ -23,7 +23,7 @@ func init() {
 /*
 Compute the frequency of inserted words.
 */
-func (ftr *TermFrequency) Compute(dataset tabula.Dataset) {
+func (ftr *TermFrequency) Compute(dataset tabula.DatasetInterface) {
 	newrevidx := dataset.GetColumnByName("newrevisionid")
 	adds := dataset.GetColumnByName("additions")
 	recordslen := len(adds.Records)

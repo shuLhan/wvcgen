@@ -22,7 +22,7 @@ func init() {
 /*
 Compute calculate digit ratio in new revision.
 */
-func (ftr *DigitRatio) Compute(dataset tabula.Dataset) {
+func (ftr *DigitRatio) Compute(dataset tabula.DatasetInterface) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {

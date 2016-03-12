@@ -21,7 +21,7 @@ func init() {
 /*
 Compute the longest word in inserted text.
 */
-func (ftr *LongestWord) Compute(dataset tabula.Dataset) {
+func (ftr *LongestWord) Compute(dataset tabula.DatasetInterface) {
 	adds := dataset.GetColumnByName("additions")
 	addslen := adds.Len()
 

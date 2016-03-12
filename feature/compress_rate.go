@@ -55,7 +55,7 @@ func compressRateLzw(text string) (float64, error) {
 /*
 Compute compress rate of inserted text.
 */
-func (ftr *CompressRate) Compute(dataset tabula.Dataset) {
+func (ftr *CompressRate) Compute(dataset tabula.DatasetInterface) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {

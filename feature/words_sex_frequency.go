@@ -22,7 +22,7 @@ func init() {
 /*
 Compute frequency of sex related words.
 */
-func (ftr *WordsSexFrequency) Compute(dataset tabula.Dataset) {
+func (ftr *WordsSexFrequency) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {

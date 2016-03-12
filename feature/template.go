@@ -20,7 +20,7 @@ func init() {
 /*
 Compute describe what this feature do.
 */
-func (ftr *Template) Compute(dataset tabula.Dataset) {
+func (ftr *Template) Compute(dataset tabula.DatasetInterface) {
 	// Get the column from dataset. This is a reference to `InputMetadata`
 	// in `features.dsv`.
 	// To see the list of column that we can process, see `features.dsv`

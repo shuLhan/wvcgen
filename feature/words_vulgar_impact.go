@@ -22,7 +22,7 @@ func init() {
 /*
 Compute frequency vulgar words in inserted text.
 */
-func (ftr *WordsVulgarImpact) Compute(dataset tabula.Dataset) {
+func (ftr *WordsVulgarImpact) Compute(dataset tabula.DatasetInterface) {
 	oldrevs := dataset.GetColumnByName("oldrevisionid")
 	newrevs := dataset.GetColumnByName("newrevisionid")
 	oldrevslen := oldrevs.Len()

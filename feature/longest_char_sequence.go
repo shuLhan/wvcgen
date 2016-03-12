@@ -21,7 +21,7 @@ func init() {
 /*
 Compute maximum sequence of character at inserted text.
 */
-func (ftr *LongestCharSeq) Compute(dataset tabula.Dataset) {
+func (ftr *LongestCharSeq) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {

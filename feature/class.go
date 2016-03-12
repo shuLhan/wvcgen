@@ -22,7 +22,7 @@ func init() {
 Compute change the classification from text to numeric. The "regular" edit
 will become 0 and the "vandalism" will become 1.
 */
-func (ftr *Class) Compute(dataset tabula.Dataset) {
+func (ftr *Class) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("class")
 
 	for _, rec := range col.Records {

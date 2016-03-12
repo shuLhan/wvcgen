@@ -23,7 +23,7 @@ func init() {
 /*
 Compute frequency of bad words.
 */
-func (ftr *WordsBadFrequency) Compute(dataset tabula.Dataset) {
+func (ftr *WordsBadFrequency) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {

@@ -26,7 +26,7 @@ func init() {
 /*
 Compute character diversity.
 */
-func (ftr *CharDiversity) Compute(dataset tabula.Dataset) {
+func (ftr *CharDiversity) Compute(dataset tabula.DatasetInterface) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {

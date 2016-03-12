@@ -24,7 +24,7 @@ func init() {
 /*
 Compute frequency of pronoun words in inserted text.
 */
-func (ftr *WordsPronounFrequency) Compute(dataset tabula.Dataset) {
+func (ftr *WordsPronounFrequency) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {

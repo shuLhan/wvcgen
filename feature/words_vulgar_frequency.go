@@ -23,7 +23,7 @@ func init() {
 /*
 Compute frequency vulgar words in inserted text.
 */
-func (ftr *WordsVulgarFrequency) Compute(dataset tabula.Dataset) {
+func (ftr *WordsVulgarFrequency) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {

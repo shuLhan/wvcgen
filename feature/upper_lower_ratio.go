@@ -22,7 +22,7 @@ func init() {
 /*
 Compute ratio of uppercase and lowercase in new revision.
 */
-func (ftr *UpperLowerRatio) Compute(dataset tabula.Dataset) {
+func (ftr *UpperLowerRatio) Compute(dataset tabula.DatasetInterface) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {

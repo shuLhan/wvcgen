@@ -21,7 +21,7 @@ func init() {
 Compute if record in column is IP address then it is an anonim and set
 their value to 1, otherwise set to 0.
 */
-func (anon *Anonim) Compute(dataset tabula.Dataset) {
+func (anon *Anonim) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("editor")
 
 	for _, rec := range col.Records {

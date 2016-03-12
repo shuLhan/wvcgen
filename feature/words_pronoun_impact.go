@@ -22,7 +22,7 @@ func init() {
 /*
 Compute frequency pronoun words in inserted text.
 */
-func (ftr *WordsPronounImpact) Compute(dataset tabula.Dataset) {
+func (ftr *WordsPronounImpact) Compute(dataset tabula.DatasetInterface) {
 	oldrevs := dataset.GetColumnByName("oldrevisionid")
 	newrevs := dataset.GetColumnByName("newrevisionid")
 	oldrevslen := oldrevs.Len()

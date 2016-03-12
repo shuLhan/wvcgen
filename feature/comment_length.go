@@ -18,7 +18,7 @@ func init() {
 
 // Compute will count number of bytes that is used in comment, NOT including
 // the header content "/* ... */".
-func (ftr *CommentLength) Compute(dataset tabula.Dataset) {
+func (ftr *CommentLength) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("editcomment")
 	leftcap := []byte("/*")
 	rightcap := []byte("*/")

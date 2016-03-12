@@ -31,7 +31,7 @@ NewReader create and return new dsv reader to read dataset from file.
 func NewReader(config string) (reader *Reader, e error) {
 	reader = &Reader{}
 
-	e = dsv.OpenReader(reader, config)
+	e = reader.Init(config, nil)
 
 	if nil != e {
 		return nil, e

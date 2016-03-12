@@ -22,7 +22,7 @@ func init() {
 /*
 Compute ratio of size between new and old revision.
 */
-func (ftr *SizeRatio) Compute(dataset tabula.Dataset) {
+func (ftr *SizeRatio) Compute(dataset tabula.DatasetInterface) {
 	oldid := dataset.GetColumnByName("oldrevisionid")
 	newid := dataset.GetColumnByName("newrevisionid")
 

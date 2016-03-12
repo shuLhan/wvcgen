@@ -23,7 +23,7 @@ func init() {
 /*
 Compute frequency of all words.
 */
-func (ftr *WordsAllFrequency) Compute(dataset tabula.Dataset) {
+func (ftr *WordsAllFrequency) Compute(dataset tabula.DatasetInterface) {
 	allWords := GetAllWordList()
 
 	col := dataset.GetColumnByName("additions")

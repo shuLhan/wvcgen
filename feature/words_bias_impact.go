@@ -22,7 +22,7 @@ func init() {
 /*
 Compute frequency bias words in inserted text.
 */
-func (ftr *WordsBiasImpact) Compute(dataset tabula.Dataset) {
+func (ftr *WordsBiasImpact) Compute(dataset tabula.DatasetInterface) {
 	oldrevs := dataset.GetColumnByName("oldrevisionid")
 	newrevs := dataset.GetColumnByName("newrevisionid")
 	oldrevslen := oldrevs.Len()

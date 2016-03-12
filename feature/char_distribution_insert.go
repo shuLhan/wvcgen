@@ -24,7 +24,7 @@ func init() {
 /*
 Compute character distribution of inserted text.
 */
-func (ftr *CharDistributionInsert) Compute(dataset tabula.Dataset) {
+func (ftr *CharDistributionInsert) Compute(dataset tabula.DatasetInterface) {
 	oldrevid := dataset.GetColumnByName("oldrevisionid")
 	adds := dataset.GetColumnByName("additions")
 

@@ -24,7 +24,7 @@ func init() {
 /*
 Compute the absolute size increment.
 */
-func (ftr *SizeIncrement) Compute(dataset tabula.Dataset) {
+func (ftr *SizeIncrement) Compute(dataset tabula.DatasetInterface) {
 	oldid := dataset.GetColumnByName("oldrevisionid")
 	newid := dataset.GetColumnByName("newrevisionid")
 

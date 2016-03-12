@@ -23,7 +23,7 @@ func init() {
 /*
 Compute non-alphanumeric ratio with all character in inserted text.
 */
-func (ftr *NonAlnumRatio) Compute(dataset tabula.Dataset) {
+func (ftr *NonAlnumRatio) Compute(dataset tabula.DatasetInterface) {
 	adds := dataset.GetColumnByName("additions")
 
 	for _, rec := range adds.Records {

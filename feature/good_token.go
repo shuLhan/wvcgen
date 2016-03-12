@@ -53,7 +53,7 @@ func init() {
 /*
 Compute number of good token in inserted text.
 */
-func (ftr *GoodToken) Compute(dataset tabula.Dataset) {
+func (ftr *GoodToken) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {

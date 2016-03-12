@@ -74,7 +74,8 @@ func runFeature(reader *wvcgen.Reader, ftrValues *tabula.Dataset,
 		return
 	}
 
-	ftr.Compute(reader.Dataset)
+	ds := reader.GetDataset().(tabula.DatasetInterface)
+	ftr.Compute(ds)
 
 	col := ftr.Interface().(*tabula.Column)
 
@@ -104,7 +105,8 @@ getAsInputColumn return feature values as in input column.
 func getAsInputColumn(reader *wvcgen.Reader, colName string,
 	ftrValues *tabula.Dataset,
 ) {
-	ftr := reader.GetColumnByName(colName)
+	ds := reader.GetDataset().(tabula.DatasetInterface)
+	ftr := ds.GetColumnByName(colName)
 
 	if ftr == nil {
 		return

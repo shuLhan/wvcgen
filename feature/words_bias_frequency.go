@@ -23,7 +23,7 @@ func init() {
 /*
 Compute frequency of biased words.
 */
-func (ftr *WordsBiasFrequency) Compute(dataset tabula.Dataset) {
+func (ftr *WordsBiasFrequency) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {

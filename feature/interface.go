@@ -13,7 +13,7 @@ Interface define the methods that must be implemented by feature.
 */
 type Interface interface {
 	tabula.ColumnInterface
-	Compute(dataset tabula.Dataset)
+	Compute(dataset tabula.DatasetInterface)
 }
 
 /*

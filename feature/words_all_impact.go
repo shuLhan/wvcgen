@@ -23,7 +23,7 @@ func init() {
 Compute the impact of vulgar, pronoun, bias, sex, and bad words in inserted
 text.
 */
-func (ftr *WordsAllImpact) Compute(dataset tabula.Dataset) {
+func (ftr *WordsAllImpact) Compute(dataset tabula.DatasetInterface) {
 	oldrevs := dataset.GetColumnByName("oldrevisionid")
 	newrevs := dataset.GetColumnByName("newrevisionid")
 	oldrevslen := oldrevs.Len()

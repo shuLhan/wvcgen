@@ -7,6 +7,7 @@ package main
 import (
 	"fmt"
 	"github.com/shuLhan/dsv"
+	"github.com/shuLhan/tabula"
 	"github.com/shuLhan/wvcgen/revision"
 	"log"
 	"time"
@@ -35,10 +36,7 @@ deletions in old rev and additions in new rev.
 
 Deletions and additions then combined into one string and appended to dataset.
 */
-func doDiff(readset dsv.ReaderInterface) {
-	ds := readset.GetDataset()
-	ds.TransposeToColumns()
-
+func doDiff(readset dsv.ReaderInterface, ds tabula.DatasetInterface) {
 	oldids := ds.GetColumnByName("oldrevisionid").ToStringSlice()
 	newids := ds.GetColumnByName("newrevisionid").ToStringSlice()
 
@@ -62,14 +60,16 @@ func doDiff(readset dsv.ReaderInterface) {
 func main() {
 	defer un(trace("Unified PAN-WVC-2010"))
 
-	readset, e := dsv.SimpleMerge(fEditsDsv, fGoldAnnotationsDsv)
+	readset, e := dsv.SimpleMerge(fEditsDsv, fGoldAnnotationsDsv, nil, nil)
 	if e != nil {
 		panic(e)
 	}
-	fmt.Printf(">>> merging %d rows\n", readset.GetDataset().GetNRow())
+
+	dataset := readset.GetDataset().(tabula.DatasetInterface)
+	fmt.Printf(">>> merging %d rows\n", dataset.GetNRow())
 
 	fmt.Println(">>> diffing ...")
-	doDiff(readset)
+	doDiff(readset, dataset)
 
 	fmt.Println(">>> writing ...")
 	n, e := dsv.SimpleWrite(readset, fOutDsv)

@@ -1,5 +1,6 @@
 {
 	"Input"		: "../../pan-wvc-2010/gold-annotations.csv"
+,	"DatasetMode"	: "Columns"
 ,	"Skip"		: 1
 ,	"MaxRows"	: -1
 ,	"InputMetadata"	: [{

@@ -16,7 +16,7 @@ const (
 )
 
 func TestMainOutput(t *testing.T) {
-	rw, e := dsv.New(fMainTestDsv)
+	rw, e := dsv.New(fMainTestDsv, nil)
 
 	if e != nil {
 		t.Fatal(e)

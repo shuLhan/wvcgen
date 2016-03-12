@@ -1,5 +1,6 @@
 {
 	"Input"		: "../../pan-wvc-2011/edits-en.csv"
+,	"DatasetMode"	: "Columns"
 ,	"Skip"		: 1
 ,	"MaxRows"	: -1
 ,	"InputMetadata"	: [{

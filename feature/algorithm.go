@@ -76,26 +76,26 @@ func KullbackLeiblerDivergence(a, b string) (divergence float64) {
 }
 
 /*
-ComputeImpact return increased ratio of words in new revision compared to old
+ComputeImpact return percentage of words in new revision compared to old
 revision, using
 
-	count_of_words_in_old
+	count_of_words_in_new
 	/
 	(count_of_words_in_old + count_of_words_in_new)
 
-if no words are found in old and new revision, return 0.5.
+if no words are found in old and new revision, return 0.
 */
 func ComputeImpact(oldrevid, newrevid string, wordlist []string) float64 {
 	oldtext, _ := revision.GetContentClean(oldrevid)
-
 	newtext, _ := revision.GetContentClean(newrevid)
 
 	oldCnt := tekstus.StringCountTokens(oldtext, wordlist, false)
 	newCnt := tekstus.StringCountTokens(newtext, wordlist, false)
 
-	if oldCnt == 0 {
-		return 0.5
+	total := float64(oldCnt + newCnt)
+	if total == 0 {
+		return 0
 	}
 
-	return float64(oldCnt) / float64(oldCnt+newCnt)
+	return float64(newCnt) / total
 }

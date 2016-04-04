@@ -9,7 +9,9 @@ that will be used by package revision.
 package reader
 
 import (
+	"encoding/json"
 	"github.com/shuLhan/dsv"
+	"io/ioutil"
 )
 
 /*
@@ -28,11 +30,20 @@ type Reader struct {
 /*
 NewReader create and return new dsv reader to read dataset from file.
 */
-func NewReader(config string) (reader *Reader, e error) {
+func NewReader(fcfg string) (reader *Reader, e error) {
 	reader = &Reader{}
 
-	e = reader.Init(config, nil)
+	config, e := ioutil.ReadFile(fcfg)
+	if e != nil {
+		return nil, e
+	}
 
+	e = json.Unmarshal(config, reader)
+	if e != nil {
+		return nil, e
+	}
+
+	e = reader.Init("", nil)
 	if nil != e {
 		return nil, e
 	}

@@ -15,5 +15,6 @@ wvcgen
 *.out
 *.rej
 *.rejected
+*.stats
 *.txt
 *.zip

@@ -1,13 +1,16 @@
 {
-	"Input"			: "../../../wvc2010_features.smote.dat"
+	"Input"			: "wvc2010_features.smote.dat"
 ,	"Rejected"		: "wvc2010_features.smote.rej"
 ,	"DatasetMode"		: "matrix"
 ,	"MaxRows"		: -1
 ,	"ClassIndex"		: 27
 
 ,	"NTree"			: 200
-,	"PercentBoot"		: 66
-,	"StatsFile"		: "randomforest.smote.200-trees.stats"
+,	"PercentBoot"		: 100
+,	"RunOOB"		: false
+,	"OOBStatsFile"		: "wvc2010_features.rf.smote.oob.stat"
+,	"PerfFile"		: "wvc2010_features.rf.smote.perf"
+,	"StatFile"		: "wvc2010_features.rf.smote.stat"
 
 ,	"InputMetadata"		: [{
 		"Name"		: "anonim"

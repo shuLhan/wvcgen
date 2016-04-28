@@ -1,141 +1,138 @@
 {
-	"Input"		: "cmd/unified-wvc2010/unified-wvc2010.dat"
-,	"DatasetMode"	: "COLUMNS"
-,	"MaxRows"	: -1
-,	"InputMetadata"	: [{
-		"Name"		: "editid"
-	,	"Separator"	: ","
-	},{
-		"Name"		: "class"
-	,	"LeftQuote"	: "\""
-	,	"RightQuote"	: "\""
-	,	"Separator"	: ","
-	},{
-		"Name"		: "oldrevisionid"
-	,	"Separator"	: ","
-	},{
-		"Name"		: "newrevisionid"
-	,	"Separator"	: ","
-	},{
-		"Name"		: "edittime"
-	,	"LeftQuote"	: "\""
-	,	"RightQuote"	: "\""
-	,	"Separator"	: ","
-	},{
-		"Name"		: "editor"
-	,	"LeftQuote"	: "\""
-	,	"RightQuote"	: "\""
-	,	"Separator"	: ","
-	},{
-		"Name"		: "articletitle"
-	,	"LeftQuote"	: "\""
-	,	"RightQuote"	: "\""
-	,	"Separator"	: ","
-	},{
-		"Name"		: "editcomment"
-	,	"LeftQuote"	: "\""
-	,	"RightQuote"	: "\""
-	,	"Separator"	: ","
-	},{
-		"Name"		: "deletions"
-	,	"LeftQuote"	: "\""
-	,	"RightQuote"	: "\""
-	,	"Separator"	: ","
-	},{
-		"Name"		: "additions"
-	,	"LeftQuote"	: "\""
-	,	"RightQuote"	: "\""
-	}]
+	"Input"			: "wvc2010_features.dat"
+,	"Rejected"		: "wvc2010_features.dat.reject"
+,	"DatasetMode"		: "matrix"
+,	"MaxRows"		: -1
+,	"ClassIndex"		: 27
 
-,	"RevisionDir"		: "pan-wvc-2010/revisions"
-,	"RevisionCleanDir"	: "pan-wvc-2010/revisions_clean"
-,	"Output"		: "wvc2010_features.dat"
-,	"Rejected"		: "wvc2010_features.rejected"
-,	"OutputMetadata": [{
+,	"PercentOver"		: 1200
+,	"K"			: 5
+,	"ClassMinor"		: "1"
+
+,	"NTree"			: 200
+,	"PercentBoot"		: 100
+,	"OOBStatsFile"		: "wvc2010_features.rf.oob.stats"
+,	"PerfFile"		: "wvc2010_features.rf.perf"
+
+,	"InputMetadata"		: [{
 		"Name"		: "editid"
 	,	"Separator"	: ","
+	,	"Skip"		: true
 	},{
 		"Name"		: "anonim"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "comment_length"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "size_increment"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "size_ratio"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "upper_lower_ratio"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "upper_to_all_ratio"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "digit_ratio"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "non_alnum_ratio"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "char_diversity"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "char_distribution_insert"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "compress_rate"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "good_token"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "term_frequency"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "longest_word"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "longest_char_sequence"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "words_vulgar_frequency"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "words_vulgar_impact"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "words_pronoun_frequency"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "words_pronoun_impact"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "words_bias_frequency"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "words_bias_impact"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "words_sex_frequency"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "words_sex_impact"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "words_bad_frequency"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "words_bad_impact"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "words_all_frequency"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "words_all_impact"
+	,	"Type"		: "real"
 	,	"Separator"	: ","
 	},{
 		"Name"		: "class"
+	,	"Type"		: "real"
+	,	"ValueSpace"	:
+		[
+			"1"
+		,	"0"
+		]
 	}]
 }

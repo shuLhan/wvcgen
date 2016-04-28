@@ -7,7 +7,10 @@
 
 ,	"NTree"			: 200
 ,	"PercentBoot"		: 66
-,	"StatsFile"		: "randomforest.lnsmote.200-trees.stats"
+,	"RunOOB"		: false
+,	"OOBStatsFile"		: "wvc2010_features.rf.lnsmote.oob.stat"
+,	"PerfFile"		: "wvc2010_features.rf.lnsmote.perf"
+,	"StatFile"		: "wvc2010_features.rf.lnsmote.stat"
 
 ,	"InputMetadata"		: [{
 		"Name"		: "anonim"

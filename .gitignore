@@ -13,8 +13,10 @@ wvcgen
 *.csv
 *.dat
 *.out
+*.perf
 *.rej
 *.rejected
+*.stat
 *.stats
 *.txt
 *.zip

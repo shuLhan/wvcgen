@@ -5,9 +5,9 @@
 ,	"MaxRows"		: -1
 ,	"ClassIndex"		: 27
 
-,	"PercentOver"		: 1200
+,	"PercentOver"		: 1100
 ,	"K"			: 5
-,	"SyntheticFile"		: "../../../wvc2010_features.lnsmote.dat"
+,	"SyntheticFile"		: "../../../wvc2010_features.lnsmote.1100.dat"
 
 ,	"NTree"			: 10
 ,	"PercentBoot"		: 66

@@ -1,18 +1,16 @@
 {
-	"Input"			: "wvc2010_features.dat"
+	"Input"			: "../../../wvc2010_features.dat"
 ,	"Rejected"		: "wvc2010_features.dat.reject"
 ,	"DatasetMode"		: "matrix"
 ,	"MaxRows"		: -1
 ,	"ClassIndex"		: 27
 
-,	"PercentOver"		: 1200
-,	"K"			: 5
-,	"ClassMinor"		: "1"
-
 ,	"NTree"			: 200
-,	"PercentBoot"		: 100
+,	"PercentBoot"		: 66
+,	"RunOOB"		: false
 ,	"OOBStatsFile"		: "wvc2010_features.rf.oob.stats"
 ,	"PerfFile"		: "wvc2010_features.rf.perf"
+,	"StatFile"		: "wvc2010_features.rf.stat"
 
 ,	"InputMetadata"		: [{
 		"Name"		: "editid"

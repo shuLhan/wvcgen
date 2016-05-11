@@ -1,12 +1,12 @@
 {
-	"Input"			: "wvc2010_features.smote.dat"
+	"Input"			: "../../../wvc2010_features.smote.dat"
 ,	"Rejected"		: "wvc2010_features.smote.rej"
 ,	"DatasetMode"		: "matrix"
 ,	"MaxRows"		: -1
 ,	"ClassIndex"		: 27
 
 ,	"NTree"			: 200
-,	"PercentBoot"		: 100
+,	"PercentBoot"		: 66
 ,	"RunOOB"		: false
 ,	"OOBStatsFile"		: "wvc2010_features.rf.smote.oob.stat"
 ,	"PerfFile"		: "wvc2010_features.rf.smote.perf"

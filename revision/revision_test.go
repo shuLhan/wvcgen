@@ -5,10 +5,20 @@
 package revision_test
 
 import (
-	"github.com/shuLhan/tabula/util/assert"
 	"github.com/shuLhan/wvcgen/revision"
+	"reflect"
+	"runtime/debug"
 	"testing"
 )
+
+func assert(t *testing.T, exp, got interface{}, equal bool) {
+	if reflect.DeepEqual(exp, got) != equal {
+		debug.PrintStack()
+		t.Fatalf("\n"+
+			">>> Expecting '%v'\n"+
+			"          got '%v'\n", exp, got)
+	}
+}
 
 func TestGetContent(t *testing.T) {
 	revision.SetDir("../pan-wvc-2010/revisions")
@@ -20,5 +30,5 @@ func TestGetContent(t *testing.T) {
 		t.Fatal(e)
 	}
 
-	assert.Equal(t, exp, got)
+	assert(t, exp, got, true)
 }

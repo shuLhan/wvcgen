@@ -26,17 +26,18 @@ func (ftr *WordsSexFrequency) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
+		r := tabula.NewRecordReal(float64(0))
 		text := rec.String()
 
 		if len(text) == 0 {
-			ftr.PushBack(&tabula.Record{V: float64(0)})
+			ftr.PushBack(r)
 			continue
 		}
 
 		in := clean.WikiText(text)
 
 		if len(in) == 0 {
-			ftr.PushBack(&tabula.Record{V: float64(0)})
+			ftr.PushBack(r)
 			continue
 		}
 
@@ -45,6 +46,7 @@ func (ftr *WordsSexFrequency) Compute(dataset tabula.DatasetInterface) {
 		freq := tekstus.WordsFrequenciesOf(inWords,
 			tekstus.SexWords, false)
 
-		ftr.PushBack(&tabula.Record{V: Round(freq)})
+		r.SetFloat(Round(freq))
+		ftr.PushBack(r)
 	}
 }

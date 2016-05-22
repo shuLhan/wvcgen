@@ -35,6 +35,6 @@ func (ftr *CharDiversity) Compute(dataset tabula.DatasetInterface) {
 		nuniq := tekstus.CountUniqChar(intext)
 		v := math.Pow(textlen, 1/float64(1+nuniq))
 
-		ftr.PushBack(&tabula.Record{V: Round(v)})
+		ftr.PushBack(tabula.NewRecordReal(Round(v)))
 	}
 }

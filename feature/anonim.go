@@ -25,9 +25,7 @@ func (anon *Anonim) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("editor")
 
 	for _, rec := range col.Records {
-		r := &tabula.Record{
-			V: float64(0.0),
-		}
+		r := tabula.NewRecordReal(0)
 
 		IP := net.ParseIP(rec.String())
 

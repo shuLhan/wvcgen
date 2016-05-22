@@ -59,6 +59,6 @@ func (ftr *GoodToken) Compute(dataset tabula.DatasetInterface) {
 	for _, rec := range col.Records {
 		cnt := tekstus.StringCountTokens(rec.String(), tokens, false)
 
-		ftr.PushBack(&tabula.Record{V: int64(cnt)})
+		ftr.PushBack(tabula.NewRecordInt(int64(cnt)))
 	}
 }

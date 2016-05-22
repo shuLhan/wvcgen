@@ -27,9 +27,10 @@ func (ftr *WordsBiasFrequency) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
+		r := tabula.NewRecordReal(float64(0))
 		text := rec.String()
 		if len(text) == 0 {
-			ftr.PushBack(&tabula.Record{V: float64(0)})
+			ftr.PushBack(r)
 			continue
 		}
 
@@ -38,6 +39,8 @@ func (ftr *WordsBiasFrequency) Compute(dataset tabula.DatasetInterface) {
 		freq := tekstus.StringFrequenciesOf(in,
 			tekstus.BiasedWords, false)
 
-		ftr.PushBack(&tabula.Record{V: Round(freq)})
+		r.SetFloat(freq)
+
+		ftr.PushBack(r)
 	}
 }

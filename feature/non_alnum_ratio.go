@@ -29,6 +29,6 @@ func (ftr *NonAlnumRatio) Compute(dataset tabula.DatasetInterface) {
 	for _, rec := range adds.Records {
 		ratio := tekstus.RatioNonAlnumChar(rec.String(), false)
 
-		ftr.PushBack(&tabula.Record{V: Round(ratio)})
+		ftr.PushBack(tabula.NewRecordReal(Round(ratio)))
 	}
 }

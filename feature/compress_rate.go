@@ -61,6 +61,6 @@ func (ftr *CompressRate) Compute(dataset tabula.DatasetInterface) {
 	for _, rec := range adds.Records {
 		v, _ := compressRateLzw(rec.String())
 
-		ftr.PushBack(&tabula.Record{V: Round(v)})
+		ftr.PushBack(tabula.NewRecordReal(Round(v)))
 	}
 }

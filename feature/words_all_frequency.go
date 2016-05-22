@@ -29,17 +29,17 @@ func (ftr *WordsAllFrequency) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
-		r := tabula.Record{V: float64(0)}
+		r := tabula.NewRecordReal(float64(0))
 
 		s := rec.String()
 		if len(s) == 0 {
-			ftr.PushBack(&r)
+			ftr.PushBack(r)
 			continue
 		}
 
 		s = clean.WikiText(s)
 		if len(s) == 0 {
-			ftr.PushBack(&r)
+			ftr.PushBack(r)
 			continue
 		}
 
@@ -49,6 +49,6 @@ func (ftr *WordsAllFrequency) Compute(dataset tabula.DatasetInterface) {
 
 		r.SetFloat(Round(freq))
 
-		ftr.PushBack(&r)
+		ftr.PushBack(r)
 	}
 }

@@ -29,6 +29,6 @@ func (ftr *LongestCharSeq) Compute(dataset tabula.DatasetInterface) {
 
 		_, v := tekstus.GetMaxCharSequence(text)
 
-		ftr.PushBack(&tabula.Record{V: int64(v)})
+		ftr.PushBack(tabula.NewRecordInt(int64(v)))
 	}
 }

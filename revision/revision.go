@@ -122,7 +122,7 @@ func Diff(oldids, newids []string, ext string) (
 
 		dels := diffs.GetAllDels()
 		delstr := dels.Join(" ")
-		delrec, e := tabula.NewRecord(delstr, tabula.TString)
+		delrec, e := tabula.NewRecordBy(delstr, tabula.TString)
 
 		if e != nil {
 			return nil, e
@@ -130,7 +130,7 @@ func Diff(oldids, newids []string, ext string) (
 
 		adds := diffs.GetAllAdds()
 		addstr := adds.Join(" ")
-		addrec, e := tabula.NewRecord(addstr, tabula.TString)
+		addrec, e := tabula.NewRecordBy(addstr, tabula.TString)
 
 		if e != nil {
 			return nil, e

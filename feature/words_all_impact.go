@@ -30,9 +30,7 @@ func (ftr *WordsAllImpact) Compute(dataset tabula.DatasetInterface) {
 	allWords := GetAllWordList()
 
 	for x, rec := range oldrevs.Records {
-		v := tabula.Record{
-			V: float64(0),
-		}
+		v := tabula.NewRecordReal(float64(0))
 
 		oldid := rec.String()
 		newid := newrevs.Records[x].String()
@@ -46,6 +44,6 @@ func (ftr *WordsAllImpact) Compute(dataset tabula.DatasetInterface) {
 				x, oldrevslen, freq)
 		}
 
-		ftr.PushBack(&v)
+		ftr.PushBack(v)
 	}
 }

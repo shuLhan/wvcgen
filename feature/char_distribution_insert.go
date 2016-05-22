@@ -29,11 +29,12 @@ func (ftr *CharDistributionInsert) Compute(dataset tabula.DatasetInterface) {
 	adds := dataset.GetColumnByName("additions")
 
 	for x, rold := range oldrevid.Records {
+		r := tabula.NewRecordReal(0.0)
 		// count distribution of old revision
 		oldText, e := revision.GetContent(rold.String())
 
 		if e != nil {
-			ftr.PushBack(&tabula.Record{V: 0.0})
+			ftr.PushBack(r)
 			continue
 		}
 
@@ -42,6 +43,8 @@ func (ftr *CharDistributionInsert) Compute(dataset tabula.DatasetInterface) {
 
 		divergence := KullbackLeiblerDivergence(oldText, inText)
 
-		ftr.PushBack(&tabula.Record{V: Round(divergence)})
+		r.SetFloat(Round(divergence))
+
+		ftr.PushBack(r)
 	}
 }

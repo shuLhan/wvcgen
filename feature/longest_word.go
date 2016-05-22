@@ -30,7 +30,7 @@ func (ftr *LongestWord) Compute(dataset tabula.DatasetInterface) {
 		textlen := len(text)
 
 		if textlen == 0 {
-			ftr.PushBack(&tabula.Record{V: int64(0)})
+			ftr.PushBack(tabula.NewRecordInt(int64(0)))
 			continue
 		}
 
@@ -45,6 +45,6 @@ func (ftr *LongestWord) Compute(dataset tabula.DatasetInterface) {
 
 		slonglen := int64(len(slong))
 
-		ftr.PushBack(&tabula.Record{V: slonglen})
+		ftr.PushBack(tabula.NewRecordInt(slonglen))
 	}
 }

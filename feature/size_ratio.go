@@ -38,6 +38,6 @@ func (ftr *SizeRatio) Compute(dataset tabula.DatasetInterface) {
 		oldlen := revision.GetSize(oldid.Records[x].String())
 		difflen := float64(1+newlen) / float64(1+oldlen)
 
-		ftr.PushBack(&tabula.Record{V: Round(difflen)})
+		ftr.PushBack(tabula.NewRecordReal(Round(difflen)))
 	}
 }

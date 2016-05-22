@@ -40,6 +40,6 @@ func (ftr *SizeIncrement) Compute(dataset tabula.DatasetInterface) {
 		oldlen := revision.GetSize(oldid.Records[x].String())
 		difflen := math.Abs(float64(newlen - oldlen))
 
-		ftr.PushBack(&tabula.Record{V: difflen})
+		ftr.PushBack(tabula.NewRecordReal(difflen))
 	}
 }

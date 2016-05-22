@@ -26,9 +26,7 @@ func (ftr *Class) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("class")
 
 	for _, rec := range col.Records {
-		r := &tabula.Record{
-			V: int64(0),
-		}
+		r := tabula.NewRecordInt(0)
 
 		if rec.String() == "vandalism" {
 			r.SetInteger(1)

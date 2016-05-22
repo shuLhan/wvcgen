@@ -28,9 +28,11 @@ func (ftr *WordsPronounFrequency) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
+		r := tabula.NewRecordReal(float64(0))
+
 		text := rec.String()
 		if len(text) == 0 {
-			ftr.PushBack(&tabula.Record{V: float64(0)})
+			ftr.PushBack(r)
 			continue
 		}
 
@@ -39,6 +41,8 @@ func (ftr *WordsPronounFrequency) Compute(dataset tabula.DatasetInterface) {
 		freq := tekstus.StringFrequenciesOf(in,
 			tekstus.PronounWords, false)
 
-		ftr.PushBack(&tabula.Record{V: Round(freq)})
+		r.SetFloat(Round(freq))
+
+		ftr.PushBack(r)
 	}
 }

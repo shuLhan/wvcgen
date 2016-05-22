@@ -24,10 +24,10 @@ func (ftr *CommentLength) Compute(dataset tabula.DatasetInterface) {
 	rightcap := []byte("*/")
 
 	for _, rec := range col.Records {
-		cmt := rec.ToByte()
+		cmt := rec.Bytes()
 
 		cmt, _ = tekstus.BytesRemoveUntil(cmt, leftcap, rightcap)
 
-		ftr.PushBack(&tabula.Record{V: int64(len(cmt))})
+		ftr.PushBack(tabula.NewRecordInt(int64(len(cmt))))
 	}
 }

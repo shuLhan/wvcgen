@@ -40,7 +40,7 @@ func (ftr *Template) Compute(dataset tabula.DatasetInterface) {
 		// Set the feature value after processing
 		e := r.SetValue(s, ftr.GetType())
 		if e == nil {
-			r.V = 0
+			r.SetInteger(0)
 		}
 
 		// Save the record value

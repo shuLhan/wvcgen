@@ -32,6 +32,6 @@ func (ftr *WordsVulgarFrequency) Compute(dataset tabula.DatasetInterface) {
 		freq := tekstus.StringFrequenciesOf(s, tekstus.VulgarWords,
 			false)
 
-		ftr.PushBack(&tabula.Record{V: Round(freq)})
+		ftr.PushBack(tabula.NewRecordReal(Round(freq)))
 	}
 }

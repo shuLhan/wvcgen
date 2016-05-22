@@ -28,6 +28,6 @@ func (ftr *UpperLowerRatio) Compute(dataset tabula.DatasetInterface) {
 	for _, rec := range adds.Records {
 		ratio := tekstus.RatioUpperLowerChar(rec.String())
 
-		ftr.PushBack(&tabula.Record{V: Round(ratio)})
+		ftr.PushBack(tabula.NewRecordReal(Round(ratio)))
 	}
 }

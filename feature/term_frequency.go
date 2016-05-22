@@ -29,11 +29,12 @@ func (ftr *TermFrequency) Compute(dataset tabula.DatasetInterface) {
 	recordslen := len(adds.Records)
 
 	for x, rec := range adds.Records {
+		r := tabula.NewRecordReal(float64(0))
 		// Get inserted words.
 		intext := rec.String()
 
 		if len(intext) == 0 {
-			ftr.PushBack(&tabula.Record{V: float64(0)})
+			ftr.PushBack(r)
 			continue
 		}
 
@@ -50,7 +51,7 @@ func (ftr *TermFrequency) Compute(dataset tabula.DatasetInterface) {
 
 		newtext, e := revision.GetContentClean(revid)
 		if e != nil {
-			ftr.PushBack(&tabula.Record{V: float64(0)})
+			ftr.PushBack(r)
 			continue
 		}
 
@@ -58,6 +59,8 @@ func (ftr *TermFrequency) Compute(dataset tabula.DatasetInterface) {
 
 		freq := tekstus.WordsFrequenciesOf(newWords, inWords, false)
 
-		ftr.PushBack(&tabula.Record{V: Round(freq)})
+		r.SetFloat(Round(freq))
+
+		ftr.PushBack(r)
 	}
 }

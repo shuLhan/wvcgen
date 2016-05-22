@@ -27,17 +27,18 @@ func (ftr *WordsBadFrequency) Compute(dataset tabula.DatasetInterface) {
 	col := dataset.GetColumnByName("additions")
 
 	for _, rec := range col.Records {
+		r := tabula.NewRecordReal(float64(0))
 		intext := rec.String()
 
 		if len(intext) == 0 {
-			ftr.PushBack(&tabula.Record{V: float64(0)})
+			ftr.PushBack(r)
 			continue
 		}
 
 		intext = clean.WikiText(intext)
 
 		if len(intext) == 0 {
-			ftr.PushBack(&tabula.Record{V: float64(0)})
+			ftr.PushBack(r)
 			continue
 		}
 
@@ -46,6 +47,8 @@ func (ftr *WordsBadFrequency) Compute(dataset tabula.DatasetInterface) {
 		freq := tekstus.WordsFrequenciesOf(inWords, tekstus.BadWords,
 			false)
 
-		ftr.PushBack(&tabula.Record{V: Round(freq)})
+		r.SetFloat(Round(freq))
+
+		ftr.PushBack(r)
 	}
 }

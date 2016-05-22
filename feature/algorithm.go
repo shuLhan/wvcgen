@@ -5,6 +5,7 @@
 package feature
 
 import (
+	"github.com/shuLhan/numerus"
 	"github.com/shuLhan/tekstus"
 	"github.com/shuLhan/wvcgen/revision"
 	"math"
@@ -18,13 +19,13 @@ func KullbackLeiblerDivergence(a, b string) (divergence float64) {
 	aCharsd, aValuesd := tekstus.CountAlnumDistribution(a)
 	bCharsd, bValuesd := tekstus.CountAlnumDistribution(b)
 
-	sumValuesA := tekstus.IntSum(aValuesd)
-	sumValuesB := tekstus.IntSum(bValuesd)
+	sumValuesA := numerus.IntsSum(aValuesd)
+	sumValuesB := numerus.IntsSum(bValuesd)
 
 	charsDiff := tekstus.RunesDiff(aCharsd, bCharsd)
 
-	aMin, _ := tekstus.IntFindMin(aValuesd)
-	bMin, _ := tekstus.IntFindMin(bValuesd)
+	aMin, _, _ := numerus.IntsFindMin(aValuesd)
+	bMin, _, _ := numerus.IntsFindMin(bValuesd)
 
 	min := aMin
 	if bMin < aMin {

@@ -5,7 +5,7 @@
 ,	"MaxRows"		: -1
 ,	"ClassIndex"		: 27
 
-,	"PercentOver"		: 1100
+,	"PercentOver"		: 1200
 ,	"K"			: 5
 ,	"SyntheticFile"		: "../../../wvc2010_features.lnsmote.1100.dat"
 
@@ -13,6 +13,7 @@
 ,	"PercentBoot"		: 66
 
 ,	"ClassMinor"		: "1"
+,	"OutliersFile"		: "wvc2010_features.outliers"
 
 ,	"InputMetadata"		: [{
 		"Name"		: "editid"

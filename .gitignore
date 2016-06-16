@@ -1,5 +1,7 @@
 cmd/merge-wvc2010/merge-wvc2010
 cmd/merge-wvc2010/rejected.dsv
+cmd/resampling/lnsmote/wvc2010_features.outliers
+cmd/resampling/lnsmote/wvc2010_features.outliers.uniq
 cmd/unified-wvc2010/unified-wvc2010
 cmd/unified-wvc2011/unified-wvc2011
 cmd/wikiclean/wikiclean
